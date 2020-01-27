@@ -16,10 +16,63 @@ defmodule Precipa do
     IO.inspect(teksto)
   end
 
+  # prepare the alphabet
+  def preparu_alfabeto(teksto) when is_binary(teksto) do
+    teksto
+    |> anstatŭi("cx", "ĉ")
+    |> anstatŭi("cX", "ĉ")
+    |> anstatŭi("Cx", "Ĉ")
+    |> anstatŭi("CX", "Ĉ")
+    |> anstatŭi("gx", "ĝ")
+    |> anstatŭi("gX", "ĝ")
+    |> anstatŭi("Gx", "Ĝ")
+    |> anstatŭi("GX", "Ĝ")
+    |> anstatŭi("hx", "ĥ")
+    |> anstatŭi("hX", "ĥ")
+    |> anstatŭi("Hx", "Ĥ")
+    |> anstatŭi("HX", "Ĥ")
+    |> anstatŭi("jx", "ĵ")
+    |> anstatŭi("jX", "ĵ")
+    |> anstatŭi("Jx", "Ĵ")
+    |> anstatŭi("JX", "Ĵ")
+    |> anstatŭi("sx", "ŝ")
+    |> anstatŭi("sX", "ŝ")
+    |> anstatŭi("Sx", "Ŝ")
+    |> anstatŭi("SX", "Ŝ")
+    |> anstatŭi("ux", "ŭ")
+    |> anstatŭi("uX", "ŭ")
+    |> anstatŭi("Ux", "Ŭ")
+    |> anstatŭi("UX", "Ŭ")
+    |> anstatŭi("ch", "ĉ")
+    |> anstatŭi("cH", "ĉ")
+    |> anstatŭi("Ch", "Ĉ")
+    |> anstatŭi("CH", "Ĉ")
+    |> anstatŭi("gh", "ĝ")
+    |> anstatŭi("gH", "ĝ")
+    |> anstatŭi("Gh", "Ĝ")
+    |> anstatŭi("GH", "Ĝ")
+    |> anstatŭi("hh", "ĥ")
+    |> anstatŭi("hH", "ĥ")
+    |> anstatŭi("Hh", "Ĥ")
+    |> anstatŭi("HH", "Ĥ")
+    |> anstatŭi("jh", "ĵ")
+    |> anstatŭi("jH", "ĵ")
+    |> anstatŭi("Jh", "Ĵ")
+    |> anstatŭi("JH", "Ĵ")
+    |> anstatŭi("sh", "ŝ")
+    |> anstatŭi("sH", "ŝ")
+    |> anstatŭi("Sh", "Ŝ")
+    |> anstatŭi("SH", "Ŝ")
+    |> anstatŭi("uh", "ŭ")
+    |> anstatŭi("uH", "ŭ")
+    |> anstatŭi("Uh", "Ŭ")
+    |> anstatŭi("UH", "Ŭ")
+  end
+
   # analyse text
   def analazistu_teksto(teksto) when is_binary(teksto) do
     tokenoj = lexu(teksto)
-    frazoj = amasigu_frazo(tokenoj)
+    _frazoj = amasigu_frazo(tokenoj)
   end
 
   # lex
@@ -53,6 +106,11 @@ defmodule Precipa do
   end
   defp amasigu_frazo2([head | tail], is_in_quotes, frazo, frazoj) do
     amasigu_frazo2(tail, is_in_quotes, [head | frazo], frazoj)
+  end
+
+  # replace
+  defp anstatŭi(teksto, maljuna, juna) do
+    String.replace(teksto, maljuna, juna, [global: true])
   end
 
 end

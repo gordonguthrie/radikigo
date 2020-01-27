@@ -92,6 +92,14 @@ defmodule PrecipaTest do
 
   end
 
+  test "replace x accents" do
+    maljuna = "laux Ludoviko Zamenhof bongustas fresxa cxehxa mangxajxo kun spicoj. lauX Ludoviko Zamenhof bongustas fresXa cXehXa mangXajXo kun spicoj. LAUX LUDOVIKO ZAMENHOF BONGUSTAS FRESXA CXEHXA MANGXAJXO KUN SPICOJ. LAUx LUDOVIKO ZAMENHOF BONGUSTAS FRESxA CxEHxA MANGxAJxO KUN SPICOJ. lauh Ludoviko Zamenhof bongustas fresha chehha manghajho kun spicoj. lauH Ludoviko Zamenhof bongustas fresHa cHehHa mangHajHo kun spicoj. LAUH LUDOVIKO ZAMENHOF BONGUSTAS FRESHA CHEHHA MANGHAJXO KUN SPICOJ. LAUh LUDOVIKO ZAMENHOF BONGUSTAS FREShA ChEHhA MANGhAJhO KUN SPICOJ."
+
+    juna = "laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj. laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj. LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ. LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ. laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj. laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj. LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ. LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ."
+
+    assert Precipa.preparu_alfabeto(maljuna) == juna
+
+  end
 
   test "break out sentences" do
 
