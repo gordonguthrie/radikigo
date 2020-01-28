@@ -13,7 +13,9 @@ defmodule Precipa do
 
   # divide text
   def dividu_teksto(teksto) when is_binary(teksto) do
-    IO.inspect(teksto)
+    teksto
+    |> preparu_alfabeto
+    |> analazistu_teksto
   end
 
   # prepare the alphabet
@@ -71,8 +73,10 @@ defmodule Precipa do
 
   # analyse text
   def analazistu_teksto(teksto) when is_binary(teksto) do
-    tokenoj = lexu(teksto)
-    _frazoj = amasigu_frazo(tokenoj)
+    teksto
+    |> lexu
+    |> amasigu_frazo
+    |> faru_signovico
   end
 
   # lex
@@ -83,8 +87,20 @@ defmodule Precipa do
   end
 
   # collect tokens
-  defp amasigu_tokenoj(tokenoj) do
-    for %LexLuthor.Token{name: n, value: v} <- tokenoj, n != :ws, do: {n, v}
+  def amasigu_tokenoj(tokenoj) do
+    for %LexLuthor.Token{name: n, value: v} <- tokenoj, do: {n, v}
+  end
+
+  # filter whitespace
+  def filtru_interspaco(tokenoj) do
+    for {n, v} <- tokenoj, n != :ws, do: {n, v}
+  end
+
+  # make string
+  defp faru_signovico(frazo) do
+    for f <- frazo do
+      String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, v}, acc) -> v <> acc end))
+    end
   end
 
   # collect sentences (the parser)
