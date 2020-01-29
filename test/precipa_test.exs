@@ -46,8 +46,8 @@ defmodule PrecipaTest do
 
   test "parse quotes" do
 
-    teksto = "aa bb \"cc dd. ee\" ff. gg"
-    frazoj = ["aa bb \"cc dd. ee\" ff.", "gg"]
+    teksto = "aa bb \"cc dd. ee\" ff. gg‘s and ’ses"
+    frazoj = ["aa bb \"cc dd. ee\" ff.", "gg's and 'ses"]
 
     assert Precipa.dividu_teksto(teksto) == frazoj
 
