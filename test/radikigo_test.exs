@@ -2,17 +2,33 @@ defmodule RadikigoTest do
   use ExUnit.Case
   doctest Radikigo
 
-  test "possesive_adjectives" do
+  test "standalone roots" do
 
-    vortoj = [
-    {"mia",         "mi"},    #-a possesive adjective
-    {"miaj",        "mi"},    #-aj plural possesive adjective
-    {"mian",        "mi"},    #-an accusative possesive adjective
-    {"miajn",       "mi"},    #-ajn accusative plural possesive adjective
-  ]
-   for {v, r} <- vortoj do
-     assert Radikigo.radikigu_vorto(v) == r
-   end
+    vortoj    = ["ĉar", "ĉi", "ĉu"]
+    anticipoj = zip(vortoj, :malgrandavorto)
+
+    rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto(v)
+
+    assert anticipoj == rezultatoj
+
   end
+
+  test "prepositions roots" do
+
+    vortoj    = ["la", "l'"]
+    anticipoj = zip(["la", "la"], :malgrandavorto)
+
+    rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto(v)
+
+    assert anticipoj == rezultatoj
+
+  end
+
+defp zip(list, duplicate) do
+  len = length(list)
+  zip2 = List.duplicate(duplicate, len)
+  Enum.zip(list, zip2)
+end
+
 
 end
