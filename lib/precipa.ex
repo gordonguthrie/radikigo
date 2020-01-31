@@ -99,7 +99,7 @@ defmodule Precipa do
   # make string
   defp faru_signovico(frazo) do
     for f <- frazo do
-      String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, v}, acc) -> v <> acc end))
+      String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, {v, _l}}, acc) -> v <> acc end))
     end
   end
 
