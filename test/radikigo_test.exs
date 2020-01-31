@@ -18,6 +18,60 @@ defmodule RadikigoTest do
 
   end
 
+  test "correlatives" do
+
+    vortoj1 = [
+      	"kia",   "kial",   "kiam",   "kie",   "kiel",   "kies",   "kio",   "kiom",   "kiu",
+      	"tia",   "tial",   "tiam",   "tie",   "tiel",   "ties",   "tio",   "tiom",   "tiu",
+      	"ia",    "ial",    "iam",    "ie",    "iel",    "ies",    "io",    "iom",    "iu",
+      	"ĉia",   "ĉial",   "ĉiam",   "ĉie",   "ĉiel",   "ĉies",   "ĉio",   "ĉiom",   "ĉiu",
+      	"nenia", "nenial", "neniam", "nenie", "neniel", "nenies", "nenio", "neniom", "neniu"
+      ]
+      vortoj2 = [
+        	"kien",
+        	"tien",
+        	"ien",
+        	"ĉien",
+        	"nenien"
+        ]
+
+      anticipoj1 = zipu(vortoj1, [%Korelatevo{}])
+      anticipoj2 = zipu(vortoj2, [%Korelatevo{kazo: :markita}])
+
+      assert anticipoj1 ++ anticipoj2 == ekruli(vortoj1 ++ vortoj2)
+
+  end
+
+  test "pronouns" do
+
+    vortoj =  [
+      "mi",
+      "mia",
+      "mian",
+      "miaj",
+      "miajn",
+      "ili",
+      "ilia",
+      "ilian",
+      "iliaj",
+      "iliajn",
+    ]
+    anticipoj = [
+      {"mi", [%Pronomo{}]},
+      {"mi", [%Pronomo{estis_poseda: :jes}]},
+      {"mi", [%Pronomo{estis_poseda: :jes, kazo: :markita}]},
+      {"mi", [%Pronomo{estis_poseda: :jes, nombro: :jes}]},
+      {"mi", [%Pronomo{estis_poseda: :jes, kazo: :markita, nombro: :jes}]},
+      {"ili", [%Pronomo{}]},
+      {"ili", [%Pronomo{estis_poseda: :jes}]},
+      {"ili", [%Pronomo{estis_poseda: :jes, kazo: :markita}]},
+      {"ili", [%Pronomo{estis_poseda: :jes, nombro: :jes}]},
+      {"ili", [%Pronomo{estis_poseda: :jes, kazo: :markita, nombro: :jes}]}
+    ]
+    assert anticipoj == ekruli(vortoj)
+
+  end
+
   test "unu roots" do
 
     vortoj    = ["un'", "unuj"]
@@ -37,7 +91,7 @@ defmodule RadikigoTest do
   test "estis in poetry" do
 
     vortoj = ["'sti"]
-    anticipoj = [{"esti", [%Verbo{}]}]
+    anticipoj = [{"est", [%Verbo{}]}]
     assert anticipoj == ekruli(vortoj)
 
   end
@@ -46,10 +100,10 @@ defmodule RadikigoTest do
 
     vortoj = ["vorto", "vorton", "vortojn", "vortoj"]
     anticipoj = [
-      {"vorto", [%Ovorto{kazo: :malmarkita, nombro: :sola}]},
-      {"vorto", [%Ovorto{kazo: :markita,    nombro: :sola}]},
-      {"vorto", [%Ovorto{kazo: :markita,    nombro: :plura}]},
-      {"vorto", [%Ovorto{kazo: :malmarkita, nombro: :plura}]}
+      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :sola}]},
+      {"vort", [%Ovorto{kazo: :markita,    nombro: :sola}]},
+      {"vort", [%Ovorto{kazo: :markita,    nombro: :plura}]},
+      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :plura}]}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -59,10 +113,10 @@ defmodule RadikigoTest do
 
     vortoj = ["bona", "bonan", "bonajn", "bonaj"]
     anticipoj = [
-      {"bona", [%Avorto{kazo: :malmarkita, nombro: :sola}]},
-      {"bona", [%Avorto{kazo: :markita,    nombro: :sola}]},
-      {"bona", [%Avorto{kazo: :markita,    nombro: :plura}]},
-      {"bona", [%Avorto{kazo: :malmarkita, nombro: :plura}]}
+      {"bon", [%Avorto{kazo: :malmarkita, nombro: :sola}]},
+      {"bon", [%Avorto{kazo: :markita,    nombro: :sola}]},
+      {"bon", [%Avorto{kazo: :markita,    nombro: :plura}]},
+      {"bon", [%Avorto{kazo: :malmarkita, nombro: :plura}]}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -72,17 +126,27 @@ defmodule RadikigoTest do
 
     vortoj = ["prompte", "prompten"]
     anticipoj = [
-      {"prompte", [%Evorto{kazo: :malmarkita}]},
-      {"prompte", [%Evorto{kazo: :markita}]},
+      {"prompt", [%Evorto{kazo: :malmarkita}]},
+      {"prompt", [%Evorto{kazo: :markita}]},
     ]
     assert anticipoj == ekruli(vortoj)
 
   end
 
-#  test "verbs" do
+  test " verby verbs" do
 
-#  end
+    vortoj = ["ami", "amas", "amis", "amos", "amus", "amu"]
+    anticipoj = [
+      {"am", [%Verbo{formo: :infinitiva}]},
+      {"am", [%Verbo{formo: :nuna}]},
+      {"am", [%Verbo{formo: :estinta}]},
+      {"am", [%Verbo{formo: :futuro}]},
+      {"am", [%Verbo{formo: :kondiĉa}]},
+      {"am", [%Verbo{formo: :imperativa}]},
+    ]
+    assert anticipoj == ekruli(vortoj)
 
+  end
 
 #
 # Helper functions
