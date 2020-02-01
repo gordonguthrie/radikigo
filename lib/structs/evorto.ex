@@ -1,5 +1,4 @@
-defmodule Avorto do
+defmodule Evorto do
   # kazo: [:markita | malmarkita]
-  # nombro: [:sola | :plura]
-  defstruct(kazo: :markita, nombro: :sola)
+  defstruct(kazo: :malmarkita)
 end
