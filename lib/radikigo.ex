@@ -151,7 +151,8 @@ defp radikigu_vorto2(vorto) do
             |> estas_verbo?
 
           catch
-            p -> p
+            p ->
+              p
           end
 
     dua_paso
@@ -424,10 +425,14 @@ defp radikigu_vorto2(vorto) do
   defp forigu_postfikso(radikigo, nomero, detaletoj, affiksoj) do
     len = String.length(radikigo) - 1
     postfikso = String.slice(radikigo, (len - nomero + 1)..len)
-    novaradikigo = String.slice(radikigo, 0..(len - nomero))
-    nombraaffiksoj = length(affiksoj)
-    novaaffiksoj = [%Affixo{postfikso: postfikso, nombro: nombraaffiksoj + 1} | affiksoj]
-    havas_postfikso?{novaradikigo, detaletoj, novaaffiksoj}
+    if (len - nomero > 0) do
+      novaradikigo = String.slice(radikigo, 0..(len - nomero))
+      nombraaffiksoj = length(affiksoj)
+      novaaffiksoj = [%Affixo{postfikso: postfikso, nombro: nombraaffiksoj + 1} | affiksoj]
+      havas_postfikso?({novaradikigo, detaletoj, novaaffiksoj})
+    else
+      {radikigo, detaletoj, affiksoj}
+    end
   end
 
 

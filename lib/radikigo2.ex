@@ -1,4 +1,8 @@
-[
+defmodule Radikigo2 do
+
+  def run() do
+
+vortoj = [
 "abat/ abbot",
 "abdik/ abdicate, resign",
 "abel/ bee",
@@ -4892,3 +4896,39 @@
 "zuav/ zouave, African infantryman",
 "zum/ hum, buzz"
 ]
+
+rezultatoj = for v <- vortoj do
+  split = String.split(v, "/")
+  [root | description] = case length(split) do
+    2 -> split
+    _ -> String.split(v, " ")
+  end
+  IO.inspect(root <> "o", label: "running")
+ {Radikigo.radikigu_vorto(root <> "o"), root <> "o", description}
+end
+
+  n = Enum.reduce(rezultatoj, 1, &print/2)
+  IO.inspect(n, label: "the number of affixes to be investigated")
+end
+
+  defp print({{radikigo, detaletoj, affiksoj}, vorto, description}, n) do
+    case affiksoj do
+      [] ->
+        n
+      _  ->
+
+        IO.inspect("")
+        IO.inspect(vorto,       label: "original word")
+        IO.inspect(radikigo,    label: "root")
+        IO.inspect(description, label: "description")
+        IO.inspect(detaletoj,   label: "details")
+        IO.inspect(affiksoj,    label: "affixes")
+        n + 1
+    end
+end
+end
+
+# :code.add_patha('_build/dev/lib/radikigo/consolidated')
+# :code.add_patha('_build/dev/lib/radikigo/ebin')
+# l(Radikigo2)
+# Radikigo2.run()
