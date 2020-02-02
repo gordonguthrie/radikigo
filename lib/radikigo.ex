@@ -71,24 +71,37 @@ defmodule Radikigo do
 ]
 
 @pronomo [
-    "mi", "ci", "li", "ŝi", "ĝi", "ni", "vi", "ili", "oni","si"
+    "mi", "ci", "li", "ŝi", "ĝi", "ni", "vi", "ili", "oni", "si"
   ]
 
-  @pronomo [
-      "mi", "ci", "li", "ŝi", "ĝi", "ni", "vi", "ili", "oni","si"
-    ]
+@prefikso2 [
+             "bo",  "ek",  "fi", "ge", "re"
+           ]
 
-@prefikso [
-    "bo", "dis", "ek", "eks", "fi", "ge", "mal", "mis", "pra" ,"re"
-    ]
+@prefikso3 [
+             "dis", "eks", "mal", "mis", "pra"
+           ]
 
-@postfikso [
-    "aĉ", "ad", "aĵ", "an", "ar", "ĉj", "nj",
-    "ebl","ec", "eg", "em", "end", "er",
-    "estr", "et", "ej", "foj", "id", "ig", "iĵ",
-    "il","in", "ind", "ing", "ism", "ist", "nj",
-    "obl", "on", "op", "uj", "ul", "um"
+@falsa_affikso [
+                  "bon"
+                ]
+
+# note that "ad" is treated seperately as a postfix
+@postfikso2 [
+    "aĉ", "aĵ", "an", "ar",
+    "ec", "eg", "em", "er", "et",
+    "ej", "id", "ig", "iĵ", "il",
+    "in", "on", "op", "uj", "ul",
+    "um"
   ]
+
+@postfikso3 [
+    "ebl", "end", "foj", "ind", "ing", "ism", "ist", "obl"
+  ]
+
+@postfikso4 ["estr"]
+
+@kerasnomo ["ĉj", "nj"]
 
 # correlative roots
 @korelatevoj [
@@ -110,39 +123,54 @@ defmodule Radikigo do
   # stem words
   # we pass through a pipeline and just throw on match
   def radikigu_vorto(vorto) when is_binary(vorto) do
-    unua_paso = try do
+
+    efiko = try do
       vorto
-      |> estis_radikigo?
-      |> estis_pronomo?
-      |> estis_korelatevo?
-      |> estis_prepozicio?
+      |> estas_radikigo?
+      |> estas_pronomo?
+      |> estas_korelatevo?
+      |> estas_prepozicio?
       |> manipulu_unu_kaj_unuj
       |> adaptu_esti
       |> manipulu_poeziaĵo
-      |> estis_ovorto?
-      |> estis_avorto?
-      |> estis_evorto?
-      |> estis_verbo?
-
-      throw({vorto, :netrovitis})
     catch
-      p -> p
+      p -> {:exit, p}
     end
+    case efiko do
+      {:exit, {radikio, detaletoj}} -> {radikio, detaletoj, []}
+      _                             -> radikigu_vorto2(efiko)
+    end
+  end
 
-    unua_paso
-    |> estis_malperfekta?
-    |> estis_participo?
+defp radikigu_vorto2(vorto) do
+    dua_paso = try do
+            vorto
+            |> estas_ovorto?
+            |> estas_avorto?
+            |> estas_evorto?
+            |> estas_verbo?
+
+          catch
+            p -> p
+          end
+
+    dua_paso
+      |> estas_malperfekta?
+      |> estas_participo?
+      |> adicu
+      |> havas_prefikso?
+      |> havas_postfikso?
 
   end
 
-  defp estis_radikigo?(vorto) do
+  defp estas_radikigo?(vorto) do
     case Enum.member?(@radikogoj, vorto) do
       true  -> throw({vorto, [:malgrandavorto]})
       false -> vorto
     end
   end
 
-  defp estis_pronomo?(vorto) do
+  defp estas_pronomo?(vorto) do
     for p <- @pronomo do
       case vorto do
         ^p ->
@@ -157,13 +185,13 @@ defmodule Radikigo do
                 snip = String.slice(vorto, lenp + 1..lenv)
                 case snip do
                   "a"   ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estis_poseda: :jes}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes}]})
                   "an"  ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estis_poseda: :jes, kazo: :markita}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, kazo: :markita}]})
                   "aj"  ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estis_poseda: :jes, nombro: :jes}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, nombro: :jes}]})
                   "ajn" ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estis_poseda: :jes, kazo: :markita, nombro: :jes}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}]})
                   _ -> :ok
                 end
               false ->
@@ -175,23 +203,23 @@ defmodule Radikigo do
     vorto
   end
 
-  defp estis_korelatevo?(vorto) do
+  defp estas_korelatevo?(vorto) do
     case Enum.member?(@korelatevoj, vorto) do
       true  -> throw({vorto, [%Korelatevo{}]})
-      false -> estis_k2(vorto)
+      false -> estas_k2(vorto)
     end
   end
 
-  defp estis_k2(vorto) do
+  defp estas_k2(vorto) do
     case Enum.member?(@korelatevoj2, vorto) do
       true  -> throw({vorto, [%Korelatevo{kazo: :markita}]})
       false -> vorto
     end
   end
 
-  defp estis_prepozicio?("la"),  do: throw({"la", [:malgrandavorto]})
-  defp estis_prepozicio?("l'"),  do: throw({"la", [:malgrandavorto]})
-  defp estis_prepozicio?(vorto), do: vorto
+  defp estas_prepozicio?("la"),  do: throw({"la", [:malgrandavorto]})
+  defp estas_prepozicio?("l'"),  do: throw({"la", [:malgrandavorto]})
+  defp estas_prepozicio?(vorto), do: vorto
 
   defp manipulu_unu_kaj_unuj("un'"),  do: throw({"unu",  [:malgrandavorto]})
   defp manipulu_unu_kaj_unuj("unuj"), do: throw({"unuj", [:malgrandavorto]})
@@ -204,103 +232,168 @@ defmodule Radikigo do
     manipulu_p2(String.reverse(vorto))
   end
 
-  defp manipulu_p2("'" <> v),   do: throw inversu({("o" <> v), [%Ovorto{}]})
+  defp manipulu_p2("'" <> v),   do: throw inversu({(v), [%Ovorto{}]})
   defp manipulu_p2(inversanta), do: inversu(inversanta)
 
-  defp estis_ovorto?(vorto), do: estis_ov2(inversu(vorto))
+  defp estas_ovorto?(vorto), do: estas_ov2(inversu(vorto))
 
-  defp estis_ov2("njo" <> v), do: throw inversu({v, [%Ovorto{kazo: :markita,    nombro: :plura}]})
-  defp estis_ov2("no"  <> v), do: throw inversu({v, [%Ovorto{kazo: :markita,    nombro: :sola}]})
-  defp estis_ov2("jo"  <> v), do: throw inversu({v, [%Ovorto{kazo: :malmarkita, nombro: :plura}]})
-  defp estis_ov2("o"   <> v), do: throw inversu({v, [%Ovorto{kazo: :malmarkita, nombro: :sola}]})
-  defp estis_ov2(inversanta), do: inversu(inversanta)
+  defp estas_ov2("njo" <> v), do: throw inversu({v, [%Ovorto{kazo: :markita,    nombro: :plura}]})
+  defp estas_ov2("no"  <> v), do: throw inversu({v, [%Ovorto{kazo: :markita,    nombro: :sola}]})
+  defp estas_ov2("jo"  <> v), do: throw inversu({v, [%Ovorto{kazo: :malmarkita, nombro: :plura}]})
+  defp estas_ov2("o"   <> v), do: throw inversu({v, [%Ovorto{kazo: :malmarkita, nombro: :sola}]})
+  defp estas_ov2(inversanta), do: inversu(inversanta)
 
-  defp estis_avorto?(vorto), do: estis_av2(inversu(vorto))
+  defp estas_avorto?(vorto), do: estas_av2(inversu(vorto))
 
-  defp estis_av2("nja" <> v), do: throw inversu({v, [%Avorto{kazo: :markita,    nombro: :plura}]})
-  defp estis_av2("na"  <> v), do: throw inversu({v, [%Avorto{kazo: :markita,    nombro: :sola}]})
-  defp estis_av2("ja"  <> v), do: throw inversu({v, [%Avorto{kazo: :malmarkita, nombro: :plura}]})
-  defp estis_av2("a"   <> v), do: throw inversu({v, [%Avorto{kazo: :malmarkita, nombro: :sola}]})
-  defp estis_av2(inversanta), do: inversu(inversanta)
+  defp estas_av2("nja" <> v), do: throw inversu({v, [%Avorto{kazo: :markita,    nombro: :plura}]})
+  defp estas_av2("na"  <> v), do: throw inversu({v, [%Avorto{kazo: :markita,    nombro: :sola}]})
+  defp estas_av2("ja"  <> v), do: throw inversu({v, [%Avorto{kazo: :malmarkita, nombro: :plura}]})
+  defp estas_av2("a"   <> v), do: throw inversu({v, [%Avorto{kazo: :malmarkita, nombro: :sola}]})
+  defp estas_av2(inversanta), do: inversu(inversanta)
 
-  defp estis_evorto?(vorto), do: estis_ev2(inversu(vorto))
+  defp estas_evorto?(vorto), do: estas_ev2(inversu(vorto))
 
-  defp estis_ev2("ne" <> v), do: throw inversu({v, [%Evorto{kazo: :markita}]})
-  defp estis_ev2("e"  <> v), do: throw inversu({v, [%Evorto{kazo: :malmarkita}]})
-  defp estis_ev2(inversanta), do: inversu(inversanta)
+  defp estas_ev2("ne" <> v), do: throw inversu({v, [%Evorto{kazo: :markita}]})
+  defp estas_ev2("e"  <> v), do: throw inversu({v, [%Evorto{kazo: :malmarkita}]})
+  defp estas_ev2(inversanta), do: inversu(inversanta)
 
-  defp estis_verbo?(vorto), do: estis_v2(inversu(vorto))
+  defp estas_verbo?(vorto), do: estas_v2(inversu(vorto))
 
-  defp estis_v2("i"  <> v),  do: throw inversu({v, [%Verbo{formo: :infinitiva}]})
-  defp estis_v2("sa" <> v),  do: throw inversu({v, [%Verbo{formo: :nuna}]})
-  defp estis_v2("so" <> v),  do: throw inversu({v, [%Verbo{formo: :futuro}]})
-  defp estis_v2("si" <> v),  do: throw inversu({v, [%Verbo{formo: :estinta}]})
-  defp estis_v2("su" <> v),  do: throw inversu({v, [%Verbo{formo: :kondiĉa}]})
-  defp estis_v2("u"  <> v),  do: throw inversu({v, [%Verbo{formo: :imperativa}]})
-  defp estis_v2(inversanta), do: inversu(inversanta)
+  defp estas_v2("i"  <> v),  do: throw inversu({v, [%Verbo{formo: :infinitiva}]})
+  defp estas_v2("sa" <> v),  do: throw inversu({v, [%Verbo{formo: :nuna}]})
+  defp estas_v2("so" <> v),  do: throw inversu({v, [%Verbo{formo: :futuro}]})
+  defp estas_v2("si" <> v),  do: throw inversu({v, [%Verbo{formo: :estinta}]})
+  defp estas_v2("su" <> v),  do: throw inversu({v, [%Verbo{formo: :kondiĉa}]})
+  defp estas_v2("u"  <> v),  do: throw inversu({v, [%Verbo{formo: :imperativa}]})
+  defp estas_v2(inversanta), do: inversu(inversanta)
 
-  defp estis_malperfekta?({vorto, detaletoj}) do
-    estis_malp2(inversu(vorto), detaletoj)
-  end
-
-  defp estis_malp2("da" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_perfekto: :ne}]}
-  end
-  defp estis_malp2("da" <> v, [%Ovorto{} = detaletoj]) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_perfekto: :ne}, detaletoj]}
-  end
-  defp estis_malp2(v, detaletoj) do
-    {inversu(v),  detaletoj}
+  defp estas_malperfekta?({radikigo, detaletoj}) do
+    estas_malp2(inversu(radikigo), detaletoj)
   end
 
-  defp estis_participo?({vorto, detaletoj}) do
-    estis_p2(inversu(vorto), detaletoj)
+  defp estas_malp2("da" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_perfekto: :ne}]}
+  end
+  defp estas_malp2("da" <> r, [%Ovorto{} = detaletoj]) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_perfekto: :ne}, detaletoj]}
+  end
+  defp estas_malp2(r, detaletoj) do
+    {inversu(r),  detaletoj}
   end
 
-  defp estis_p2("ta" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]}
-  end
-  defp estis_p2("to" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]}
-  end
-  defp estis_p2("ti" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]}
-  end
-  defp estis_p2("tna" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, aspecto: :ekestiĝa}]}
-  end
-  defp estis_p2("tno" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, aspecto: :finita}]}
-  end
-  defp estis_p2("tni" <> v, [%Verbo{} = detaletoj]) do
-    {inversu(v), [%Verbo{detaletoj | estis_partipo: :jes, aspecto: :anticipa}]}
-  end
-  defp estis_p2("ta" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa} | detaletoj]}
-  end
-  defp estis_p2("to" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}   | detaletoj]}
-  end
-  defp estis_p2("ti" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa} | detaletoj]}
-  end
-  defp estis_p2("tna" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, aspecto: :ekestiĝa} | detaletoj]}
-  end
-  defp estis_p2("tno" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, aspecto: :finita}   | detaletoj]}
-  end
-  defp estis_p2("tni" <> v, detaletoj) do
-    {inversu(v), [%Verbo{formo: :radikigo, estis_partipo: :jes, aspecto: :anticipa} | detaletoj]}
-  end
-  defp estis_p2(v, detaletoj) do
-    {inversu(v),  detaletoj}
+  defp estas_participo?({radikigo, detaletoj}) do
+    estas_p2(inversu(radikigo), detaletoj)
   end
 
+  defp estas_p2("ta" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]}
+  end
+  defp estas_p2("to" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]}
+  end
+  defp estas_p2("ti" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]}
+  end
+  defp estas_p2("tna" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, aspecto: :ekestiĝa}]}
+  end
+  defp estas_p2("tno" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, aspecto: :finita}]}
+  end
+  defp estas_p2("tni" <> r, [%Verbo{} = detaletoj]) do
+    {inversu(r), [%Verbo{detaletoj | estas_partipo: :jes, aspecto: :anticipa}]}
+  end
+  defp estas_p2("ta" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa} | detaletoj]}
+  end
+  defp estas_p2("to" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}   | detaletoj]}
+  end
+  defp estas_p2("ti" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa} | detaletoj]}
+  end
+  defp estas_p2("tna" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :ekestiĝa} | detaletoj]}
+  end
+  defp estas_p2("tno" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :finita}   | detaletoj]}
+  end
+  defp estas_p2("tni" <> r, detaletoj) do
+    {inversu(r), [%Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :anticipa} | detaletoj]}
+  end
+  defp estas_p2(r, detaletoj) do
+    {inversu(r),  detaletoj}
+  end
+
+  def adicu({radikigo, detaletoj}) do
+    {radikigo, detaletoj, []}
+  end
+
+  defp havas_prefikso?({radikigo, detaletoj, affiksoj}) do
+    case Enum.member?(@falsa_affikso, radikigo) do
+      true ->
+        {radikigo, detaletoj, affiksoj}
+      false ->
+        eblaprefikso2 = String.slice(radikigo, 0..1)
+        eblaprefikso3 = String.slice(radikigo, 0..2)
+        case {Enum.member?(@prefikso2, eblaprefikso2), Enum.member?(@prefikso3, eblaprefikso3)} do
+          # ONLY happens with 'ek' and 'eks'
+          # if it is being used as a verb go with `ek` otherwise go with 'eks'
+          {true, true} ->
+            case havas_verbo?(detaletoj) do
+              true ->
+                forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, affiksoj)
+              false ->
+                forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, affiksoj)
+            end
+          {true, false} ->
+            forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, affiksoj)
+          {false, true} ->
+            forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, affiksoj)
+          {false, false} ->
+            {radikigo, detaletoj, affiksoj}
+        end
+    end
+  end
+
+  defp havas_postfikso?({radikigo, detaletoj, affiksoj}) do
+    case Enum.member?(@falsa_affikso, radikigo) do
+      true ->
+        {radikigo, detaletoj, affiksoj}
+      false ->
+          i = inversu(radikigo)
+          eblapostfikso2 = inversu(String.slice(i, 0..1))
+          case Enum.member?(@kerasnomo, eblapostfikso2) do
+            true ->
+              novadetaletoj = marku_karesnomi(detaletoj)
+              {radikigo <> "o", novadetaletoj, affiksoj}
+            false ->
+              eblapostfikso3 = inversu(String.slice(i, 0..2))
+              eblapostfikso4 = inversu(String.slice(i, 0..3))
+              estas_postfikso2 = Enum.member?(@postfikso2, eblapostfikso2)
+              estas_postfikso3 = Enum.member?(@postfikso3, eblapostfikso3)
+              estas_postfikso4 = Enum.member?(@postfikso4, eblapostfikso4)
+              case {estas_postfikso2, estas_postfikso3, estas_postfikso4} do
+                {true, false, false} ->
+                  forigu_postfikso(radikigo, 2, detaletoj, affiksoj)
+                {false, true, false} ->
+                  forigu_postfikso(radikigo, 3, detaletoj, affiksoj)
+                {false, false, true} ->
+                  forigu_postfikso(radikigo, 4, detaletoj, affiksoj)
+                {false, false, false} ->
+                  {radikigo, detaletoj, affiksoj}
+              end
+            end
+        end
+  end
 
 #
 # Helper fns
 #
+
+  defp havas_verbo?([]),              do: false
+  defp havas_verbo?([%Verbo{} | _v]), do: true
+  defp havas_verbo?([_k       | v]),  do: havas_verbo?(v)
 
   defp kurtigu(vorto, n) do
     String.slice(vorto, 0..n)
@@ -313,5 +406,29 @@ defmodule Radikigo do
   defp inversu(vorto) when is_binary(vorto) do
     String.reverse(vorto)
   end
+
+  defp forigu_prefikso(radikigo, prefikso, nomero, detaletoj, affiksoj) do
+    len = String.length(radikigo) - 1
+    novaradikigo = String.slice(radikigo, nomero..len)
+    nombraaffiksoj = length(affiksoj)
+    novaaffiksoj = [%Affixo{prefikso: prefikso, nombro: nombraaffiksoj + 1} | affiksoj]
+    havas_prefikso?{novaradikigo, detaletoj, novaaffiksoj}
+  end
+
+  defp marku_karesnomi(detaletoj), do: marku_k2(detaletoj, [])
+
+  defp marku_k2([], a),                  do: Enum.reverse(a)
+  defp marku_k2([%Ovorto{} = o | v], a), do: Enum.reverse(a) ++ [%Ovorto{o | estas_karesnomo: :jes}] ++ v
+  defp marku_k2([k | v], a),             do: marku_k2(v, [k | a])
+
+  defp forigu_postfikso(radikigo, nomero, detaletoj, affiksoj) do
+    len = String.length(radikigo) - 1
+    postfikso = String.slice(radikigo, (len - nomero + 1)..len)
+    novaradikigo = String.slice(radikigo, 0..(len - nomero))
+    nombraaffiksoj = length(affiksoj)
+    novaaffiksoj = [%Affixo{postfikso: postfikso, nombro: nombraaffiksoj + 1} | affiksoj]
+    havas_postfikso?{novaradikigo, detaletoj, novaaffiksoj}
+  end
+
 
 end

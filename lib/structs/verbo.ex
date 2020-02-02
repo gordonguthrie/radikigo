@@ -2,11 +2,11 @@ defmodule Verbo do
   # formo: [:infinitiva | :nuna | :futuro | :estinta | :kondiĉa | :imperativa | :participa | :radikigo]
   # voĉo: [activa | pasiva]
   # aspecto: [:nil | :ekestiĝa | :finita | :anticipa]
-  # estis_partipo: [:jes | :ne]
-  # estis_perfekto: [:jes | :ne]
+  # estas_partipo: [:jes | :ne]
+  # estas_perfekto: [:jes | :ne]
   defstruct(formo:          :infinitiva,
             voĉo:           :aktiva,
             aspecto:        :nil,
-            estis_partipo:  :ne,
-            estis_perfekto: :jes)
+            estas_partipo:  :ne,
+            estas_perfekto: :jes)
 end

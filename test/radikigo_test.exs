@@ -57,16 +57,16 @@ defmodule RadikigoTest do
       "iliajn",
     ]
     anticipoj = [
-      {"mi",  [%Pronomo{}]},
-      {"mi",  [%Pronomo{estis_poseda: :jes}]},
-      {"mi",  [%Pronomo{estis_poseda: :jes, kazo: :markita}]},
-      {"mi",  [%Pronomo{estis_poseda: :jes, nombro: :jes}]},
-      {"mi",  [%Pronomo{estis_poseda: :jes, kazo: :markita, nombro: :jes}]},
-      {"ili", [%Pronomo{}]},
-      {"ili", [%Pronomo{estis_poseda: :jes}]},
-      {"ili", [%Pronomo{estis_poseda: :jes, kazo: :markita}]},
-      {"ili", [%Pronomo{estis_poseda: :jes, nombro: :jes}]},
-      {"ili", [%Pronomo{estis_poseda: :jes, kazo: :markita, nombro: :jes}]}
+      {"mi",  [%Pronomo{}],                                                 []},
+      {"mi",  [%Pronomo{estas_poseda: :jes}],                               []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita}],               []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, nombro: :jes}],                 []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}], []},
+      {"ili", [%Pronomo{}],                                                 []},
+      {"ili", [%Pronomo{estas_poseda: :jes}],                               []},
+      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita}],               []},
+      {"ili", [%Pronomo{estas_poseda: :jes, nombro: :jes}],                 []},
+      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}], []}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -82,16 +82,16 @@ defmodule RadikigoTest do
 
   test "poetry" do
 
-    vortoj    = ["poeziĵ'"]
-    anticipoj = [{"poeziĵo", [%Ovorto{}]}]
+    vortoj    = ["poezi'"]
+    anticipoj = [{"poezi", [%Ovorto{}], []}]
     assert anticipoj == ekruli(vortoj)
 
   end
 
-  test "estis in poetry" do
+  test "estas in poetry" do
 
     vortoj = ["'sti"]
-    anticipoj = [{"est", [%Verbo{}]}]
+    anticipoj = [{"est", [%Verbo{}], []}]
     assert anticipoj == ekruli(vortoj)
 
   end
@@ -100,10 +100,10 @@ defmodule RadikigoTest do
 
     vortoj = ["vorto", "vorton", "vortoj", "vortojn"]
     anticipoj = [
-      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :sola}]},
-      {"vort", [%Ovorto{kazo: :markita,    nombro: :sola}]},
-      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :plura}]},
-      {"vort", [%Ovorto{kazo: :markita,    nombro: :plura}]}
+      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :sola}],  []},
+      {"vort", [%Ovorto{kazo: :markita,    nombro: :sola}],  []},
+      {"vort", [%Ovorto{kazo: :malmarkita, nombro: :plura}], []},
+      {"vort", [%Ovorto{kazo: :markita,    nombro: :plura}], []}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -113,10 +113,10 @@ defmodule RadikigoTest do
 
     vortoj = ["bona", "bonan", "bonajn", "bonaj"]
     anticipoj = [
-      {"bon", [%Avorto{kazo: :malmarkita, nombro: :sola}]},
-      {"bon", [%Avorto{kazo: :markita,    nombro: :sola}]},
-      {"bon", [%Avorto{kazo: :markita,    nombro: :plura}]},
-      {"bon", [%Avorto{kazo: :malmarkita, nombro: :plura}]}
+      {"bon", [%Avorto{kazo: :malmarkita, nombro: :sola}],  []},
+      {"bon", [%Avorto{kazo: :markita,    nombro: :sola}],  []},
+      {"bon", [%Avorto{kazo: :markita,    nombro: :plura}], []},
+      {"bon", [%Avorto{kazo: :malmarkita, nombro: :plura}], []}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -126,8 +126,8 @@ defmodule RadikigoTest do
 
     vortoj = ["prompte", "prompten"]
     anticipoj = [
-      {"prompt", [%Evorto{kazo: :malmarkita}]},
-      {"prompt", [%Evorto{kazo: :markita}]},
+      {"prompt", [%Evorto{kazo: :malmarkita}], []},
+      {"prompt", [%Evorto{kazo: :markita}],    []},
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -137,12 +137,12 @@ defmodule RadikigoTest do
 
     vortoj = ["ami", "amas", "amis", "amos", "amus", "amu"]
     anticipoj = [
-      {"am", [%Verbo{formo: :infinitiva}]},
-      {"am", [%Verbo{formo: :nuna}]},
-      {"am", [%Verbo{formo: :estinta}]},
-      {"am", [%Verbo{formo: :futuro}]},
-      {"am", [%Verbo{formo: :kondiĉa}]},
-      {"am", [%Verbo{formo: :imperativa}]},
+      {"am", [%Verbo{formo: :infinitiva}], []},
+      {"am", [%Verbo{formo: :nuna}],       []},
+      {"am", [%Verbo{formo: :estinta}],    []},
+      {"am", [%Verbo{formo: :futuro}],     []},
+      {"am", [%Verbo{formo: :kondiĉa}],    []},
+      {"am", [%Verbo{formo: :imperativa}], []},
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -155,16 +155,16 @@ defmodule RadikigoTest do
                 "amado", "amadon", "amadoj", "amadojn"
              ]
     anticipoj = [
-      {"am", [%Verbo{formo: :infinitiva, estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :nuna,       estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :estinta,    estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :futuro,     estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :imperativa, estis_perfekto: :ne}]},
-      {"am", [%Verbo{formo: :radikigo,   estis_perfekto: :ne}, %Ovorto{kazo: :malmarkita, nombro: :sola}]},
-      {"am", [%Verbo{formo: :radikigo,   estis_perfekto: :ne}, %Ovorto{kazo: :markita,    nombro: :sola}]},
-      {"am", [%Verbo{formo: :radikigo,   estis_perfekto: :ne}, %Ovorto{kazo: :malmarkita, nombro: :plura}]},
-      {"am", [%Verbo{formo: :radikigo,   estis_perfekto: :ne}, %Ovorto{kazo: :markita,    nombro: :plura}]}
+      {"am", [%Verbo{formo: :infinitiva, estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :nuna,       estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :estinta,    estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :futuro,     estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :imperativa, estas_perfekto: :ne}],                                             []},
+      {"am", [%Verbo{formo: :radikigo,   estas_perfekto: :ne}, %Ovorto{kazo: :malmarkita, nombro: :sola}],  []},
+      {"am", [%Verbo{formo: :radikigo,   estas_perfekto: :ne}, %Ovorto{kazo: :markita,    nombro: :sola}],  []},
+      {"am", [%Verbo{formo: :radikigo,   estas_perfekto: :ne}, %Ovorto{kazo: :malmarkita, nombro: :plura}], []},
+      {"am", [%Verbo{formo: :radikigo,   estas_perfekto: :ne}, %Ovorto{kazo: :markita,    nombro: :plura}], []}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -187,77 +187,196 @@ defmodule RadikigoTest do
                 "amita",  "amite",  "amito"
              ]
     anticipoj = [
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}], []},
 
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}], []},
 
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}], []},
 
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}], []},
 
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}], []},
 
-      {"am", [%Verbo{formo: :infinitiva, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :nuna,       estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :estinta,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :futuro,     estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :kondiĉa,    estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
-      {"am", [%Verbo{formo: :imperativa, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}]},
+      {"am", [%Verbo{formo: :infinitiva, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :nuna,       estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :estinta,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :futuro,     estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :kondiĉa,    estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
+      {"am", [%Verbo{formo: :imperativa, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Ovorto{}]},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :ekestiĝa}, %Ovorto{}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Ovorto{}]},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :finita}, %Ovorto{}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Ovorto{}]},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :aktiva, aspecto: :anticipa}, %Ovorto{}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Ovorto{}]},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :ekestiĝa}, %Ovorto{}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Ovorto{}]},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :finita}, %Ovorto{}], []},
 
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Avorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Evorto{}]},
-      {"am", [%Verbo{formo: :radikigo, estis_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Ovorto{}]},
-
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Avorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Evorto{}], []},
+      {"am", [%Verbo{formo: :radikigo, estas_partipo: :jes, voĉo: :pasiva, aspecto: :anticipa}, %Ovorto{}], []},
     ]
     assert anticipoj == ekruli(vortoj)
 
   end
 
+  test "single prefixes" do
+
+    vortoj = [
+        "boamo",  "ekamo",  "fiamo",  "geamo",  "reamo",
+        "disamo", "eksamo", "eksami", "malamo", "misamo", "praamo"
+        ]
+    anticipoj = [
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "bo",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "ek",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "fi",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "ge",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "re",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "dis", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "eks", nombro: 1}]},
+      {"sam", [%Verbo{}],  [%Affixo{prefikso: "ek",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "mal", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "mis", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Affixo{prefikso: "pra", nombro: 1}]}
+    ]
+    assert anticipoj == ekruli(vortoj)
+
+  end
+
+  test "poly prefixes" do
+
+    vortoj = [
+        "bogeamo",  "gebono",  "maleksamo",  "geredispraamo"
+        ]
+    anticipoj = [
+      {"am",  [%Ovorto{}], [
+        %Affixo{prefikso: "ge", nombro: 2},
+        %Affixo{prefikso: "bo", nombro: 1}
+        ]},
+      {"bon", [%Ovorto{}], [
+        %Affixo{prefikso: "ge", nombro: 1}
+        ]},
+      {"am",  [%Ovorto{}], [
+        %Affixo{prefikso: "eks", nombro: 2},
+        %Affixo{prefikso: "mal", nombro: 1}
+        ]},
+      {"am",  [%Ovorto{}], [
+        %Affixo{prefikso: "pra", nombro: 4},
+        %Affixo{prefikso: "dis", nombro: 3},
+        %Affixo{prefikso: "re",  nombro: 2},
+        %Affixo{prefikso: "ge",  nombro: 1}
+        ]},
+    ]
+    assert anticipoj == ekruli(vortoj)
+
+  end
+
+  test "single postfixes" do
+    # nouns first
+    vortoj1 = [
+      "amaĉo", "amaĵo", "amano", "amaro",
+      "ameco", "amego", "amejo",
+      "amemo", "amero", "ameto", "amido", "amigo",
+      "amiĵo", "amilo", "amino", "amono",
+      "amopo", "amujo", "amulo", "amumo",
+      "ameblo", "amendo", "amfojo", "amindo", "amingo", "amismo", "amisto", "amoblo",
+      "amestro"
+    ]
+    # other stuff including various verb structures
+    vortoj2 = [
+      # "amaĉe",
+      # "amaĉa",
+      "amaĉas",
+      "amaĉanto"
+    ]
+    vortoj3 = [
+      "gordonjo",
+      "orĉjo"
+    ]
+    anticipoj1 = [
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "aĉ",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "aĵ",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "an",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ar",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ec",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "eg",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ej",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "em",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "er",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "et",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "id",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ig",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "iĵ",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "il",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "in",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "on",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "op",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "uj",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ul",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "um",   nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ebl",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "end",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "foj",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ind",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ing",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ism",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "ist",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "obl",  nombro: 1}]},
+      {"am", [%Ovorto{}], [%Affixo{postfikso: "estr", nombro: 1}]}
+    ]
+
+    anticipoj2 = [
+      #{"am", [%Evorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      #{"am", [%Avorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"am", [%Verbo{formo: :nuna}], [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"am", [
+              %Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :ekestiĝa},
+              %Ovorto{estas_karesnomo: :ne, kazo: :malmarkita, nombro: :sola}
+             ],                      [%Affixo{postfikso: "aĉ", nombro: 1}]},
+    ]
+    anticipoj3 = [
+      {"gordonjo", [%Ovorto{estas_karesnomo: :jes}], []},
+      {"orĉjo",    [%Ovorto{estas_karesnomo: :jes}], []}
+    ]
+    assert anticipoj1 ++ anticipoj2 ++ anticipoj3  == ekruli(vortoj1 ++ vortoj2 ++ vortoj3)
+  end
 
 #
 # Helper functions
@@ -266,12 +385,12 @@ defmodule RadikigoTest do
   defp zipu(list, duplicate) do
     len = length(list)
     zip2 = List.duplicate(duplicate, len)
-    Enum.zip(list, zip2)
+    zip3 = List.duplicate([], len)
+    Enum.zip([list, zip2, zip3])
   end
 
   defp ekruli(vortoj) do
     _rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto(v)
   end
-
 
 end
