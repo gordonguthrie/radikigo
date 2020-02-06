@@ -326,10 +326,12 @@ defmodule RadikigoTest do
       "amaĉas",
       "amaĉanto"
     ]
+    # nicknames
     vortoj3 = [
       "gordonjo",
       "orĉjo"
     ]
+
     anticipoj1 = [
       {"am", [%Ovorto{}], [%Affixo{postfikso: "aĉ",   nombro: 1}]},
       {"am", [%Ovorto{}], [%Affixo{postfikso: "aĵ",   nombro: 1}]},
@@ -378,6 +380,20 @@ defmodule RadikigoTest do
     assert anticipoj1 ++ anticipoj2 ++ anticipoj3  == ekruli(vortoj1 ++ vortoj2 ++ vortoj3)
   end
 
+  test "false affixes" do
+    # words with false affixes
+    vortoj = [
+      "abono",
+      "akrido"
+    ]
+    anticipoj = [
+      {"abon", [%Ovorto{}], []},
+      {"akrid",[%Ovorto{}], []}
+    ]
+    assert anticipoj  == ekruli(vortoj)
+
+  end
+
 #
 # Helper functions
 #
@@ -390,7 +406,7 @@ defmodule RadikigoTest do
   end
 
   defp ekruli(vortoj) do
-    _rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto(v)
+    _rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto_TEST(v)
   end
 
 end

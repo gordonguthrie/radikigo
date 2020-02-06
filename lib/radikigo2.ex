@@ -1,5 +1,7 @@
 defmodule Radikigo2 do
 
+  @logfile "vorto.log"
+
   def run() do
 
 vortoj = [
@@ -30,7 +32,7 @@ vortoj = [
 "adapt/ adapt",
 "adept/ adept",
 "adiaŭ goodbye",
-"adici/ add (arith.)",
+"adici/ add (arith.)",
 "adjektiv/ adjective",
 "adjutant/ adjutant (mil.)",
 "administr/ administer",
@@ -125,7 +127,7 @@ vortoj = [
 "album/ album",
 "alcion/ kingfisher; halcyon (bird)",
 "ald/ alto (singing voice)",
-"ale/ tree-lined garden path",
+"ale/ tree-lined garden path",
 "alegori/ allegory, figurative tale",
 "Aleksandr/ Alexander",
 "alen/ awl, punch",
@@ -173,7 +175,7 @@ vortoj = [
 "ameb/ amoeba",
 "amel/ starch",
 "amend/ ammend",
-"Amerik/ America",
+"Amerik/ America",
 "ametist/ amethyst",
 "amfibi/ amphibian",
 "amfiteatr/ ampitheater",
@@ -220,7 +222,7 @@ vortoj = [
 "ankr/ anchor",
 "Ann/ Anna",
 "anomali/ anomaly",
-"anonc/ announce, advertise",
+"anonc/ announce, advertise",
 "anonim/ anonymous",
 "anser/ goose",
 "anstataŭ instead of",
@@ -267,7 +269,7 @@ vortoj = [
 "apotek/ pharmacy",
 "apoteoz/ apotheosis, deification, deified ideal",
 "apozici/ apposition (grammatical)",
-"apr/ wild boar",
+"apr/ wild boar",
 "April/ April",
 "aprob/ approve",
 "apud nearby",
@@ -314,7 +316,7 @@ vortoj = [
 "arkitektur/ architecture",
 "arkiv/ archives",
 "Arkt/ Arctic",
-"arleken/ harlequin",
+"arleken/ harlequin",
 "arm/ arm (against), equip with",
 "arme/ army",
 "Armen/ Armenian (people)",
@@ -360,7 +362,7 @@ vortoj = [
 "ateism/ atheism",
 "ateist/ atheist",
 "atenc/ make a criminal attempt against, assault",
-"atend/ wait, expect",
+"atend/ wait, expect",
 "atent/ attentive",
 "atest/ attest, witness to, testify, certify",
 "ating/ attain, reach",
@@ -408,7 +410,7 @@ vortoj = [
 "avenu/ avenue, wide tree-lined path to a house",
 "avert/ warn, caution",
 "aviad/ aviation",
-"avid/ greedy, eager, hungry for",
+"avid/ greedy, eager, hungry for",
 "aviz/ a notice, notification, announcement",
 "avokad/ avocado",
 "azen/ ass, donkey",
@@ -452,7 +454,7 @@ vortoj = [
 "bankrot/ bankrupt",
 "bant/ knot, bow (of a ribbon, etc.)",
 "bapt/ baptize",
-"bar/ bar, obstruct",
+"bar/ bar, obstruct",
 "barak/ barracks",
 "barakt/ struggle against, contend with, grapple with",
 "barb/ beard",
@@ -500,7 +502,7 @@ vortoj = [
 "bend/ band, tape, ribbon",
 "benk/ bench",
 "benzin/ gasoline",
-"ber/ berry",
+"ber/ berry",
 "beril/ beryl (mineral)",
 "Berlin/ Berlin",
 "Bert/ Bertha",
@@ -548,7 +550,7 @@ vortoj = [
 "blok/ block, boulder, chunk",
 "blokad/ blockade",
 "blond/ blonde, fair",
-"blov/ blow (as the wind, etc.)",
+"blov/ blow (as the wind, etc.)",
 "blu/ blue",
 "bluf/ bluff (verb)",
 "bluz/ blouse",
@@ -595,7 +597,7 @@ vortoj = [
 "bred/ breed, propogate, raise",
 "brems/ brake (of an automobile, etc.)",
 "bret/ shelf",
-"brid/ bridle (as for a horse)",
+"brid/ bridle (as for a horse)",
 "brigad/ brigade (military)",
 "brik/ brick, ingot",
 "bril/ shine",
@@ -643,7 +645,7 @@ vortoj = [
 "burĝ/ citizen, freeman, commoner",
 "burĝon/ bud (of a plant)",
 "burlesk/ burlesque",
-"burnus/ hooded Arabian cloak",
+"burnus/ hooded Arabian cloak",
 "burokrat/ bureaucrat",
 "bust/ bust (anatomy)",
 "buŝ/ mouth",
@@ -687,7 +689,7 @@ vortoj = [
 "cign/ swan",
 "cikad/ cicada (insect)",
 "cikatr/ scar",
-"cikl/ cycle, recurrent period of events",
+"cikl/ cycle, recurrent period of events",
 "ciklon/ cyclone",
 "ciklop/ cyclops",
 "cikoni/ stork",
@@ -731,7 +733,7 @@ vortoj = [
 "ĉan/ cock (of a gun)",
 "ĉap/ cap, bonnet",
 "ĉapel/ hat",
-"ĉapitr/ chapter (of a book)",
+"ĉapitr/ chapter (of a book)",
 "ĉar/ cart, wagon",
 "ĉar because, for, since",
 "ĉarlatan/ charlatan",
@@ -821,7 +823,7 @@ vortoj = [
 "deklaraci/ declaration, announcement, proclamation",
 "deklinaci/ decline (grammer)",
 "dekliv/ declivity, slope, slant",
-"dekolt/ expose neck and shoulders, low-cut",
+"dekolt/ expose neck and shoulders, low-cut",
 "dekoraci/ decorate, embellish",
 "dekret/ decree, enactment, fiat",
 "dekstr/ right-hand",
@@ -869,7 +871,7 @@ vortoj = [
 "diafan/ diaphanous, semi-transparent, translucent",
 "diafragm/ diaphram",
 "diagnoz/ diagnose",
-"diagonal/ diagonal",
+"diagonal/ diagonal",
 "diakon/ deacon",
 "dialekt/ dialect",
 "dialektik/ dialectic (reasoning by dialog)",
@@ -916,7 +918,7 @@ vortoj = [
 "disenteri/ dysentery",
 "disk/ disk",
 "diskont/ discount, rebate, deduction",
-"diskret/ discreet, cautious",
+"diskret/ discreet, cautious",
 "diskriminaci/ discriminate (by race, etc.)",
 "diskut/ discuss, debate, deliberate",
 "dispepsi/ indigestion",
@@ -964,7 +966,7 @@ vortoj = [
 "dram/ drama",
 "drap/ woolen cloth",
 "drapir/ drape, hang cloth over",
-"drast/ drastic",
+"drast/ drastic",
 "draŝ/ thresh (grain)",
 "drat/ wire",
 "dres/ train (person or animal)",
@@ -1048,7 +1050,7 @@ vortoj = [
 "elegant/ elegant",
 "elegi/ elegy, song of lamentation",
 "elekt/ elect, choose",
-"elektr/ electricity",
+"elektr/ electricity",
 "elektronik/ electronics",
 "element/ element",
 "elf/ elf",
@@ -1094,7 +1096,7 @@ vortoj = [
 "epitet/ epithet (a characterizing word or phrase)",
 "epizod/ episode",
 "epok/ epoch",
-"epolet/ epaulette, shoulder-piece",
+"epolet/ epaulette, shoulder-piece",
 "epope/ epic poem",
 "erar/ err, be mistaken",
 "erik/ heath (plant)",
@@ -1139,7 +1141,7 @@ vortoj = [
 "etiologi/ etiology (study of the causes of disease)",
 "Etiop/ Ethiopian (people)",
 "etn/ ethnicity",
-"etnograf/ ethnographist",
+"etnograf/ ethnographist",
 "etnografi/ ethnography (systematic recording of human cultures)",
 "etnologi/ ethnology",
 "etos/ ethos, characteristic atmosphere",
@@ -1183,7 +1185,7 @@ vortoj = [
 "falang/ phalanx",
 "falbal/ flounce, a strip of pleated fabric attached by one edge",
 "falĉ/ mow, reap, cut (grass, etc.)",
-"fald/ fold, pleat (vb.)",
+"fald/ fold, pleat (vb.)",
 "falk/ falcon",
 "fals/ falsify",
 "fam/ fame, rumor, report",
@@ -1231,7 +1233,7 @@ vortoj = [
 "femur/ thigh, femur",
 "fend/ split",
 "fenestr/ window",
-"feniks/ phoenix",
+"feniks/ phoenix",
 "fenkol/ fennel (plant)",
 "fenomen/ phenomenon",
 "fer/ iron",
@@ -1279,7 +1281,7 @@ vortoj = [
 "fistul/ fistula (type of ulcer)",
 "fiŝ/ fish",
 "fizik/ physics",
-"fiziolog/ physiologist",
+"fiziolog/ physiologist",
 "fiziologi/ physiology",
 "fizionomi/ physionomy (facial characteristics and expressions)",
 "fjord/ fjord",
@@ -1327,7 +1329,7 @@ vortoj = [
 "fork/ fork",
 "form/ form, shape",
 "formal/ formal",
-"format/ format",
+"format/ format",
 "formik/ ant",
 "formul/ formula",
 "forn/ stove, furnace, oven",
@@ -1375,7 +1377,7 @@ vortoj = [
 "friz/ curl, crimp wave (hair, etc.)",
 "fromaĝ/ cheese",
 "front/ front, foremost part",
-"fronton/ fronton (architectural)",
+"fronton/ fronton (architectural)",
 "frost/ frost",
 "frot/ rub",
 "fru/ early",
@@ -1419,7 +1421,7 @@ vortoj = [
 "galon/ cord, lace",
 "galop/ gallop",
 "galoŝ/ galosh, overshoe",
-"gam/ gamut, full range",
+"gam/ gamut, full range",
 "gamaŝ/ gaiter, spats (type of foot covering)",
 "gangli/ ganglion",
 "gangren/ gangrene",
@@ -1466,7 +1468,7 @@ vortoj = [
 "German/ German (people)",
 "gerundi/ gerund (grammar)",
 "gest/ gesture",
-"giĉet/ guichet (small viewing door; ticket office; counter)",
+"giĉet/ guichet (small viewing door; ticket office; counter)",
 "gigant/ giant",
 "gilotin/ guillotine",
 "gimnastik/ gymnastics",
@@ -1514,7 +1516,7 @@ vortoj = [
 "gramatik/ grammar",
 "gramofon/ gramophone, phonograph",
 "granat/ pomegranate (type of fruit)",
-"grand/ large",
+"grand/ large",
 "grandioz/ grandiose",
 "granit/ granite",
 "gras/ grease, fat",
@@ -1602,7 +1604,7 @@ vortoj = [
 "hav/ have",
 "haven/ port, harbor",
 "hazard/ chance, random",
-"he hey",
+"he hey",
 "Hebre/ Hebrew",
 "heder/ ivy",
 "hegemoni/ hegemony, predominance, supremacy",
@@ -1650,7 +1652,7 @@ vortoj = [
 "hipertrofi/ hypertrophy (med.)",
 "hipnot/ hypnosis",
 "hipodrom/ hippodrome",
-"hipokrit/ feign, play the hypocrite",
+"hipokrit/ feign, play the hypocrite",
 "hipopotam/ hippopotamus",
 "hipotek/ mortgage",
 "hipotez/ hypothesis",
@@ -1698,7 +1700,7 @@ vortoj = [
 "hund/ dog",
 "Hungar/ Hungarian (people)",
 "hura hurray",
-"husar/ hussar (type of soldier)",
+"husar/ hussar (type of soldier)",
 "huz/ great white sturgeon (type of fish)",
 "ĥaos/ chaos",
 "ĥemi/ chemistry",
@@ -1732,7 +1734,7 @@ vortoj = [
 "ileks/ holly (type of plant)",
 "ili they",
 "ilumin/ illuminate",
-"ilustr/ illustrate",
+"ilustr/ illustrate",
 "iluzi/ illusion",
 "imag/ imagine",
 "imit/ imitate",
@@ -1824,7 +1826,7 @@ vortoj = [
 "interpunkci/ punctuation",
 "intervju/ interview",
 "intest/ intestine",
-"intim/ intimate",
+"intim/ intimate",
 "intrig/ intrigue, plot, scheme",
 "inund/ inundate, flood",
 "invad/ invade",
@@ -1863,7 +1865,7 @@ vortoj = [
 "Jesu/ Jesus",
 "Jezuit/ Jesuit",
 "jo <liternomo> name of the letter \"j\"",
-"jod/ iodine",
+"jod/ iodine",
 "Johan/ John",
 "Jork/ York",
 "Jozef/ Joseph",
@@ -1903,7 +1905,7 @@ vortoj = [
 "kaban/ cabin, cottage",
 "kabinet/ special room for consultation",
 "kabl/ cable",
-"kabriolet/ cabriolet (type of one-horse carriage)",
+"kabriolet/ cabriolet (type of one-horse carriage)",
 "kaĉ/ hash, mush, pulp, purée",
 "kadavr/ cadaver, corpse",
 "kadenc/ cadence (as in music)",
@@ -1951,7 +1953,7 @@ vortoj = [
 "kamion/ camion (type of truck or cart)",
 "kamizol/ camisole (women’s undergarment)",
 "kamlot/ camlet (type of cloth)",
-"kamomil/ chamomile (type of plant)",
+"kamomil/ chamomile (type of plant)",
 "kamp/ field, expanse of land; scope",
 "kampanj/ campaign (military)",
 "kan/ cane, reed",
@@ -1999,7 +2001,7 @@ vortoj = [
 "kapsul/ capsule",
 "kapt/ capture, catch",
 "kapucen/ capuchin monk",
-"kapuĉ/ hood (as of a monk’s robe)",
+"kapuĉ/ hood (as of a monk’s robe)",
 "kar/ dear",
 "karaben/ carbine (type of rifle)",
 "karaf/ carafe (type of bottle)",
@@ -2047,7 +2049,7 @@ vortoj = [
 "kast/ caste; exclusive class",
 "kastanjet/ castanet (musical instrument)",
 "kastel/ castle",
-"kastor/ beaver",
+"kastor/ beaver",
 "kastr/ castrate",
 "kaŝ/ hide, conceal, keep secret",
 "kaŝtan/ chestnut (type of fruit)",
@@ -2095,7 +2097,7 @@ vortoj = [
 "kemi/ chemistry",
 "ken/ resinous pinewood",
 "kep/ kepi (a French military peaked cap)",
-"ker/ heart (cards)",
+"ker/ heart (cards)",
 "kern/ kernel; grain, seed (corn)",
 "kerub/ cherub",
 "kest/ chest, box",
@@ -2143,7 +2145,7 @@ vortoj = [
 "klister/ enema, douche",
 "kliŝ/ block or plate for type (typography)",
 "klitor/ clitoris",
-"kloak/ sewer, drain, cesspool",
+"kloak/ sewer, drain, cesspool",
 "klon/ clone",
 "klopod/ endeavor, take steps, make efforts",
 "klor/ chlorine",
@@ -2191,7 +2193,7 @@ vortoj = [
 "kolomb/ dove, pigeon",
 "kolon/ column, pillar",
 "kolonel/ colonel",
-"koloni/ colony, settlement",
+"koloni/ colony, settlement",
 "kolor/ color",
 "kolos/ colossus, huge dominating figure",
 "kolport/ hawk (sell), peddle",
@@ -2239,7 +2241,7 @@ vortoj = [
 "kompres/ compress (bandage)",
 "kompromis/ a compromise",
 "kompromit/ to compromise, endanger, jeopardize",
-"komput/ compute",
+"komput/ compute",
 "komun/ common to all, general, public",
 "komuni/ Communion",
 "komunik/ communicate",
@@ -2287,7 +2289,7 @@ vortoj = [
 "konkord/ concord, agreement",
 "konkret/ concrete, perceptible, real",
 "konkur/ compete, be a rival to",
-"konkurenc/ compete commercially",
+"konkurenc/ compete commercially",
 "konkurs/ a competition",
 "konsci/ be conscious of, aware of",
 "konscienc/ conscience",
@@ -2335,7 +2337,7 @@ vortoj = [
 "konus/ cone",
 "konval/ lily of the valley (type of plant)",
 "konveks/ convex",
-"konven/ be suitable, suit",
+"konven/ be suitable, suit",
 "konvenci/ convention, agreement",
 "konversaci/ converse, chat, talk",
 "konvert/ to convert",
@@ -2383,7 +2385,7 @@ vortoj = [
 "kostum/ costume, style of dress",
 "kot/ dirt, mud",
 "kotiz/ contribute",
-"kotlet/ cutlet, chop, small piece of meat",
+"kotlet/ cutlet, chop, small piece of meat",
 "koton/ cotton (type of fabric)",
 "koturn/ quail (type of bird)",
 "kov/ brood, hatch, sit (as a hen on eggs, etc.)",
@@ -2431,7 +2433,7 @@ vortoj = [
 "Krist/ Christ",
 "kristal/ crystal",
 "kriteri/ criterion",
-"kritik/ criticize",
+"kritik/ criticize",
 "kriz/ crisis",
 "krizantem/ chrysanthemum (type of plant)",
 "kroĉ/ hook to, fasten to, hitch on to",
@@ -2479,7 +2481,7 @@ vortoj = [
 "kupe/ compartment in a railroad car",
 "kupol/ cupola, dome (in architecture)",
 "kupon/ coupon, ticket",
-"kupr/ copper",
+"kupr/ copper",
 "kur/ to run",
 "kurac/ treat (as an ilness), apply remedies, doctor",
 "kuraĝ/ courageous",
@@ -2568,7 +2570,7 @@ vortoj = [
 "latitud/ latitude",
 "latun/ brass",
 "Latv/ Latvian (people)",
-"laŭ according to",
+"laŭ according to",
 "laŭb/ arbour, summer-house",
 "laŭd/ praise",
 "laŭr/ laurel (type of tree)",
@@ -2616,7 +2618,7 @@ vortoj = [
 "liberal/ liberal (politics)",
 "Liberi/ Liberia",
 "Libi/ Libya",
-"libr/ book",
+"libr/ book",
 "lice/ French secondary school (lycée)",
 "licenc/ license, authorize, give permit",
 "lien/ spleen (anatomy)",
@@ -2664,7 +2666,7 @@ vortoj = [
 "lojt/ eel-pout, burbot (type of fish)",
 "lok/ place, location",
 "lokomobil/ steam-powered car or tractor",
-"lokomotiv/ locomotive",
+"lokomotiv/ locomotive",
 "lol/ rye-grass (type of plant)",
 "London/ London",
 "long/ long",
@@ -2708,7 +2710,7 @@ vortoj = [
 "mahagon/ mahogany (type of tree)",
 "maiz/ maize, corn",
 "Maj/ May",
-"majest/ majestic",
+"majest/ majestic",
 "majolik/ majolica (type of Italian ceramic)",
 "majonez/ mayonnaise",
 "major/ major (military title)",
@@ -2755,7 +2757,7 @@ vortoj = [
 "manufaktur/ factory",
 "manuskript/ manuscript, book or document written by hand",
 "map/ map",
-"mar/ sea",
+"mar/ sea",
 "marasm/ marasmus (progressive emaciation)",
 "marcipan/ marzipan (almond paste)",
 "marĉ/ marsh, swamp",
@@ -2803,7 +2805,7 @@ vortoj = [
 "mazurk/ mazurka (type of Polish dance)",
 "mebl/ piece of furniture",
 "meĉ/ wick (of a candle or lamp)",
-"medal/ medal",
+"medal/ medal",
 "medalion/ medallion",
 "medi/ sphere influence, environment, habitat, surroundings",
 "medicin/ science of medicine",
@@ -2851,7 +2853,7 @@ vortoj = [
 "merlang/ whiting (type of fish)",
 "mes/ mass (Roman Catholic)",
 "mesaĝ/ message",
-"Mesi/ Messiah",
+"Mesi/ Messiah",
 "mespil/ medlar (type of fruit)",
 "met/ put, place",
 "metafizik/ metaphysics",
@@ -2899,7 +2901,7 @@ vortoj = [
 "min/ mine (as of gold, etc., or in military sense)",
 "minac/ menace, threaten",
 "minaret/ minaret, turret of a mosque",
-"mineral/ mineral",
+"mineral/ mineral",
 "mineralog/ minerologist",
 "mineralogi/ minerology",
 "miniatur/ miniature (a small object of art)",
@@ -2946,7 +2948,7 @@ vortoj = [
 "molekul/ molecule",
 "molusk/ mollusk",
 "moment/ moment (of time)",
-"mon/ money",
+"mon/ money",
 "monaĥ/ monk, friar",
 "monarĥ/ monarch",
 "monarĥi/ monarchy",
@@ -2994,7 +2996,7 @@ vortoj = [
 "mult/ much, a lot of",
 "multiplik/ multiply",
 "mumi/ mummy",
-"munici/ ammunition",
+"munici/ ammunition",
 "munt/ mount, build, erect, hang",
 "mur/ wall",
 "murd/ murder",
@@ -3037,7 +3039,7 @@ vortoj = [
 "nav/ nave (long narrow central hall of a church)",
 "navigaci/ navigation",
 "naz/ nose",
-"ne no, not",
+"ne no, not",
 "nebul/ fog",
 "neces/ necessary",
 "Nederland/ Netherlands",
@@ -3125,7 +3127,7 @@ vortoj = [
 "obelisk/ obelisk",
 "objekt/ object",
 "objektiv/ objective (not subjective)",
-"oblat/ wafer, seal",
+"oblat/ wafer, seal",
 "obligaci/ bond, debanature (as in commerce)",
 "oblikv/ oblique",
 "obol/ obol (type of ancient Greek coin)",
@@ -3172,7 +3174,7 @@ vortoj = [
 "ombrel/ umbrella",
 "omnibus/ bus (omnibus)",
 "ond/ wave",
-"oni one, people, they",
+"oni one, people, they",
 "oniks/ onyx (type of mineral)",
 "onkl/ uncle",
 "onobrik/ sanfoin (type of plant)",
@@ -3218,7 +3220,7 @@ vortoj = [
 "orografi/ orography (geography of mountains)",
 "ort/ orthogonal",
 "ortodoks/ orthodox",
-"ortografi/ orthography, correct or conventional spelling",
+"ortografi/ orthography, correct or conventional spelling",
 "osced/ yawn, gape, open wide",
 "ost/ bone",
 "ostr/ oyster",
@@ -3260,7 +3262,7 @@ vortoj = [
 "palt/ overcoat",
 "pamflet/ small libelous, satirical, or scurrilous document",
 "pan/ bread",
-"Panam/ Panama",
+"Panam/ Panama",
 "pane/ break down, stop working (as a machine, etc.)",
 "panel/ panel (section of a surface)",
 "panik/ a panic",
@@ -3308,7 +3310,7 @@ vortoj = [
 "paroĥ/ parish",
 "paroksism/ paroxysm, fit, seizure",
 "parol/ speak, talk",
-"part/ part, piece, portion",
+"part/ part, piece, portion",
 "parter/ pit (theater)",
 "parti/ party, side, faction",
 "particip/ participle (grammar)",
@@ -3356,7 +3358,7 @@ vortoj = [
 "pedant/ pedant; one who teaches with undue emphasis on minutiae",
 "pedel/ an official sent to carry out the orders of a judge, etc.",
 "pedik/ louse",
-"peg/ woodpecker",
+"peg/ woodpecker",
 "pejzaĝ/ landscape, scenery",
 "pek/ sin",
 "pekl/ pickle in brine, salt (vb.)",
@@ -3404,7 +3406,7 @@ vortoj = [
 "peron/ front steps, loading platform",
 "persekut/ persecute, prosecute",
 "persik/ peach",
-"persist/ persist",
+"persist/ persist",
 "person/ person",
 "perspektiv/ perspective",
 "persvad/ persuade",
@@ -3452,7 +3454,7 @@ vortoj = [
 "pioĉ/ pick-axe",
 "pionir/ pioneer",
 "pip/ pipe (for tobacco)",
-"pipr/ pepper",
+"pipr/ pepper",
 "pips/ pip (poultry disease)",
 "pir/ pear",
 "piramid/ pyramid",
@@ -3500,7 +3502,7 @@ vortoj = [
 "pli more",
 "plik/ plica (fold or groove in skin)",
 "plonĝ/ plunge, dive",
-"plor/ cry, weep",
+"plor/ cry, weep",
 "plot/ roach (type of fish)",
 "plu farther, further",
 "plug/ plow, till (soil, etc.)",
@@ -3548,7 +3550,7 @@ vortoj = [
 "popl/ poplar (type of tree)",
 "popol/ people",
 "popular/ popular",
-"por/ pore",
+"por/ pore",
 "por for",
 "porcelan/ cporcelain, fine china",
 "porci/ portion",
@@ -3595,7 +3597,7 @@ vortoj = [
 "prepar/ prepare",
 "prepozici/ preposition",
 "prerogativ/ prerogative",
-"pres/ print (verb)",
+"pres/ print (verb)",
 "preskaŭ almost",
 "preskrib/ prescribe (medicine)",
 "prestiĝ/ prestige",
@@ -3643,7 +3645,7 @@ vortoj = [
 "prolet/ proletarian, worker",
 "proletari/ proletarian, worker",
 "prolog/ prologue",
-"promen/ to walk, promenade",
+"promen/ to walk, promenade",
 "promes/ promise",
 "promontor/ promontory, high point of land",
 "pronom/ pronoun",
@@ -3691,7 +3693,7 @@ vortoj = [
 "pudr/ powder (cosmetic)",
 "puf/ puff, pad, wad",
 "pugn/ fist",
-"pul/ flea",
+"pul/ flea",
 "pulĉinel/ punchinello (type of clown)",
 "pulm/ lung",
 "pulp/ pulp",
@@ -3735,7 +3737,7 @@ vortoj = [
 "radik/ root",
 "radikal/ radical",
 "radiograf/ to photograph by X-rays",
-"rafan/ radish",
+"rafan/ radish",
 "rafin/ refine, clarify, purify",
 "raj/ ray (type of marine animal)",
 "rajd/ ride",
@@ -3782,7 +3784,7 @@ vortoj = [
 "regal/ entertain, regale",
 "regent/ regent, provisional ruler",
 "regiment/ regiment",
-"region/ region, district, part",
+"region/ region, district, part",
 "registr/ register",
 "regn/ the state, kingdom",
 "regol/ wren (type of bird)",
@@ -3830,7 +3832,7 @@ vortoj = [
 "revizi/ revise",
 "revizor/ inspector-general",
 "revoluci/ revolution, uprising",
-"revolver/ revolver",
+"revolver/ revolver",
 "revu/ review; magazine, periodical",
 "rezed/ mignonette (type of plant)",
 "rezerv/ reserve, hold back, retain, save",
@@ -3878,7 +3880,7 @@ vortoj = [
 "river/ river",
 "riverenc/ bow, curtsey",
 "rivolu/ revolve",
-"riz/ rice",
+"riz/ rice",
 "ro <liternomo> name of the letter \"r\"",
 "rob/ robe",
 "robot/ robot",
@@ -3969,7 +3971,7 @@ vortoj = [
 "sarkasm/ sarcasm",
 "sarkofag/ sarcophagus",
 "sat/ satiated, satisfied, full",
-"Satan/ Satan",
+"Satan/ Satan",
 "satelit/ satellite",
 "saten/ satin",
 "satir/ satire",
@@ -4017,7 +4019,7 @@ vortoj = [
 "sent/ feel, perceive",
 "sentenc/ short, pithy, wise saying",
 "sentimental/ sentimental",
-"sep seven",
+"sep seven",
 "sepi/ cuttlefish (type of marine animal)",
 "Septembr/ September",
 "septet/ septet",
@@ -4065,7 +4067,7 @@ vortoj = [
 "simetri/ symmetry",
 "simfoni/ symphony",
 "simi/ ape, monkey",
-"simil/ similar, alike",
+"simil/ similar, alike",
 "simpati/ like, affinity, instinctive attraction",
 "simpl/ simple",
 "simptom/ symptom",
@@ -4113,7 +4115,7 @@ vortoj = [
 "ski/ ski",
 "skism/ schism",
 "skiz/ sketch, draft, outline",
-"sklav/ slave",
+"sklav/ slave",
 "skol/ school (of thought, etc.)",
 "skolastik/ scholasticism",
 "skolop/ woodcock (type of bird)",
@@ -4161,7 +4163,7 @@ vortoj = [
 "somer/ summer",
 "somnambul/ somnambulist, sleepwalker",
 "son/ sound",
-"sonat/ sonata",
+"sonat/ sonata",
 "sond/ take soundings, measure depth",
 "sonet/ sonnet",
 "sonĝ/ dream",
@@ -4209,7 +4211,7 @@ vortoj = [
 "splen/ deep depression, blues, melancholy",
 "split/ splinter, chip, flake, shaving",
 "sponde/ spondee (type of verse)",
-"spong/ sponge",
+"spong/ sponge",
 "spontane/ spontaneous",
 "sport/ sport, outdoors recreation",
 "sprit/ witty, quick-witted, clever",
@@ -4257,7 +4259,7 @@ vortoj = [
 "stir/ steer (verb)",
 "stof/ stofe (Russian measure)",
 "stoik/ stoic",
-"stok/ stock, goods for sale",
+"stok/ stock, goods for sale",
 "stomak/ stomach",
 "stopl/ stubble",
 "strab/ squint",
@@ -4305,7 +4307,7 @@ vortoj = [
 "sufok/ suffocate",
 "sugest/ suggest",
 "sugesti/ suggest by hypnotic influence",
-"suk/ juice; sap",
+"suk/ juice; sap",
 "sukcen/ amber (type of substance)",
 "sukces/ succeed",
 "suker/ sugar",
@@ -4349,7 +4351,7 @@ vortoj = [
 "ŝanĝ/ change",
 "ŝankr/ canker",
 "ŝarad/ charade",
-"ŝarg/ charge, load (a gun, etc.)",
+"ŝarg/ charge, load (a gun, etc.)",
 "ŝarĝ/ charge, load (a ship, etc.)",
 "ŝark/ shark",
 "ŝat/ enjoy, appreciate",
@@ -4397,7 +4399,7 @@ vortoj = [
 "ŝton/ stone",
 "ŝtop/ stop up, plug up",
 "ŝtorm/ storm",
-"ŝtrump/ stocking",
+"ŝtrump/ stocking",
 "ŝtup/ stair, step",
 "ŝu/ shoe",
 "ŝuld/ to be in debt, owe",
@@ -4441,7 +4443,7 @@ vortoj = [
 "tank/ tank (military)",
 "tapet/ tapestry, wall hanging",
 "tapiok/ tapioca",
-"tapir/ tapir",
+"tapir/ tapir",
 "tapiŝ/ carpet",
 "tarantel/ tarantella (type of dance)",
 "tarantul/ tarantula",
@@ -4489,7 +4491,7 @@ vortoj = [
 "tent/ tempt",
 "Teodor/ Theodore",
 "teokrat/ theocrat",
-"teokrati/ theocracy",
+"teokrati/ theocracy",
 "teolog/ theologian",
 "teologi/ theology",
 "teorem/ theorem",
@@ -4537,7 +4539,7 @@ vortoj = [
 "tint/ chink, clank, jingle",
 "tio that (thing)",
 "tiom so much, that quantity",
-"tip/ type, character, specimen",
+"tip/ type, character, specimen",
 "tipograf/ typographer",
 "tipografi/ typography",
 "tir/ draw, pull, drag",
@@ -4585,7 +4587,7 @@ vortoj = [
 "traĥe/ trachea, windpipe",
 "trajn/ train, series of objects in a line",
 "trajt/ trait, feature, characteristic, feature",
-"trakt/ transact, treat of (a subject), deal with",
+"trakt/ transact, treat of (a subject), deal with",
 "traktat/ treaty, agreement",
 "traktor/ tractor",
 "tram/ tram, streetcar",
@@ -4633,7 +4635,7 @@ vortoj = [
 "trotuar/ pavement, sidewalk",
 "trov/ find",
 "tru/ hole",
-"trud/ intrude, obtrude, impose",
+"trud/ intrude, obtrude, impose",
 "truf/ truffle (type of plant)",
 "trul/ trowel",
 "trumpet/ trumpet",
@@ -4674,7 +4676,7 @@ vortoj = [
 "tus/ cough",
 "tuŝ/ touch",
 "tut/ whole, entire, total",
-"ukaz/ ukase, edict of czarist government",
+"ukaz/ ukase, edict of czarist government",
 "ulan/ uhlan (cavalryman with lance)",
 "ulcer/ ulcer",
 "ulm/ elm (type of tree)",
@@ -4756,7 +4758,7 @@ vortoj = [
 "vek/ wake, arouse",
 "vekt/ beam (of scales, balances, etc.)",
 "vel/ a sail (e.g. of a ship)",
-"velen/ vellum, animal skin used for books",
+"velen/ vellum, animal skin used for books",
 "velk/ droop, fade, wither",
 "velociped/ velocipede",
 "velur/ velvet",
@@ -4804,7 +4806,7 @@ vortoj = [
 "veterinar/ veterinarian",
 "vetur/ journey, travel (by vehicle)",
 "vezik/ bladder; blister; bubble",
-"vezir/ vizier (type of Turkish minister)",
+"vezir/ vizier (type of Turkish minister)",
 "vi you",
 "viadukt/ viaduct",
 "viand/ meat, flesh",
@@ -4852,7 +4854,7 @@ vortoj = [
 "vizaĝ/ face",
 "vizi/ vision, apparition, imagined supernatural appearance",
 "vizier/ visor",
-"vizit/ visit",
+"vizit/ visit",
 "vo <liternomo> name of the letter \"v\"",
 "voĉ/ voice",
 "vodk/ vodka",
@@ -4899,12 +4901,13 @@ vortoj = [
 
 rezultatoj = for v <- vortoj do
   split = String.split(v, "/")
-  [root | description] = case length(split) do
-    2 -> split
-    _ -> String.split(v, " ")
+  {[root | description], type} = case length(split) do
+    2 -> {split, :root}
+    _ -> {String.split(v, " "), :word}
   end
+  to_disk(root, description, type)
   IO.inspect(root <> "o", label: "running")
- {Radikigo.radikigu_vorto(root <> "o"), root <> "o", description}
+ {Radikigo.radikigu_vorto_TEST(root <> "o"), root <> "o", description}
 end
 
   n = Enum.reduce(rezultatoj, 1, &print/2)
@@ -4917,15 +4920,44 @@ end
         n
       _  ->
 
+      #to_disk(vorto)
+
         IO.inspect("")
         IO.inspect(vorto,       label: "original word")
         IO.inspect(radikigo,    label: "root")
-        IO.inspect(description, label: "description")
-        IO.inspect(detaletoj,   label: "details")
-        IO.inspect(affiksoj,    label: "affixes")
+#        IO.inspect(description, label: "description")
+#        IO.inspect(detaletoj,   label: "details")
+#        IO.inspect(affiksoj,    label: "affixes")
         n + 1
     end
 end
+
+defp to_disk(output) do
+  # Macros and shit prevent you using an attribute in File.open
+  log = @logfile
+  case File.exists?(log) do
+    true  -> :ok
+    false -> File.touch(log)
+  end
+   {:ok, file} = File.open(log, [:append])
+   :ok = :io.fwrite(file, "{'~s', []}~n", [String.downcase(output)])
+   :ok = File.close(file)
+end
+
+defp to_disk(output1, output2, output3) do
+  # Macros and shit prevent you using an attribute in File.open
+  log = @logfile
+  case File.exists?(log) do
+    true  -> :ok
+    false -> File.touch(log)
+  end
+   {:ok, file} = File.open(log, [:append])
+   :ok = :io.fwrite(file, "{\"~s\", [{\"~s\", \"~s\", :~s}]}~n",
+      [String.downcase(output1), output1, String.trim(Enum.join(output2)), output3])
+   :ok = File.close(file)
+end
+
+
 end
 
 # :code.add_patha('_build/dev/lib/radikigo/consolidated')

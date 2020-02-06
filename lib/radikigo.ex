@@ -122,8 +122,13 @@ defmodule Radikigo do
 
   # stem words
   # we pass through a pipeline and just throw on match
-  def radikigu_vorto(vorto) when is_binary(vorto) do
+  def radikigu_vorto_TEST(vorto) when is_binary(vorto) do
 
+    vortaro = Vorto.akiru_malvera_affikso_vortaro()
+    radikigu_vorto(vorto, vortaro)
+  end
+
+  def radikigu_vorto(vorto, vortaro) do
     efiko = try do
       vorto
       |> estas_radikigo?
@@ -138,29 +143,34 @@ defmodule Radikigo do
     end
     case efiko do
       {:exit, {radikio, detaletoj}} -> {radikio, detaletoj, []}
-      _                             -> radikigu_vorto2(efiko)
+      _                             -> radikigu_vorto2(efiko, vortaro)
     end
   end
 
-defp radikigu_vorto2(vorto) do
-    dua_paso = try do
-            vorto
-            |> estas_ovorto?
-            |> estas_avorto?
-            |> estas_evorto?
-            |> estas_verbo?
+defp radikigu_vorto2(vorto, vortaro) do
+  dua_paso = try do
+    vorto
+    |> estas_ovorto?
+    |> estas_avorto?
+    |> estas_evorto?
+    |> estas_verbo?
+  catch
+    p ->
+      p
+  end
 
-          catch
-            p ->
-              p
-          end
-
+  tria_paso = try do
     dua_paso
       |> estas_malperfekta?
       |> estas_participo?
       |> adicu
+      |> havas_malvera_affikso?(vortaro)
       |> havas_prefikso?
       |> havas_postfikso?
+    catch
+      p ->
+        p
+    end
 
   end
 
@@ -330,6 +340,13 @@ defp radikigu_vorto2(vorto) do
     {radikigo, detaletoj, []}
   end
 
+  defp havas_malvera_affikso?({radikigo, detaletoj, affiksoj}, vortaro) do
+    case :dict.is_key(radikigo, vortaro) do
+      true  -> throw({radikigo, detaletoj, affiksoj})
+      false -> {radikigo, detaletoj, affiksoj}
+    end
+  end
+
   defp havas_prefikso?({radikigo, detaletoj, affiksoj}) do
     case Enum.member?(@falsa_affikso, radikigo) do
       true ->
@@ -434,6 +451,5 @@ defp radikigu_vorto2(vorto) do
       {radikigo, detaletoj, affiksoj}
     end
   end
-
 
 end
