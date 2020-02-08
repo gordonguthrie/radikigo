@@ -1,26 +1,29 @@
 defmodule Procezo do
 
   def procezu(teksto) when is_binary(teksto) do
-    teksto
+    efiko = teksto
     |> Precipa.analazistu_teksto
     |> amasigu
 
+    efiko
   end
 
   defp amasigu(efikoj) do
+    vortaro = Vorto.akiru_malvera_affikso_vortaro()
     for {paragrafo, tokenoj} <- efikoj do
-      IO.inspect(paragrafo, label: "paragraph")
-      Enum.reduce(tokenoj, 0, &procezu_vortoj/2)
+      Enum.reduce(tokenoj, {0, [], vortaro}, &procezu_vorto/2)
     end
   end
 
-  defp procezu_vortoj({:vorto, {vorto, len}}, n) do
+  defp procezu_vorto({:vorto, {vorto, len}}, {n, vortoj, vortaro}) do
     IO.inspect(vorto, label: "word")
     IO.inspect(n)
-    n + len
+    radikigo = Radikigo.radikigu_vorto(String.downcase(vorto), vortaro)
+    IO.inspect(radikigo, label: "radical")
+    {n + len, [{radikigo, n, len} | vortoj], vortaro}
   end
-  defp procezu_vorto(x, n) do
-    IO.inspect(x, label: "x")
+  defp procezu_vorto({_, {_, len}}, {n, vortoj, vortaro}) do
+    {n + len, vortoj, vortaro}
   end
 
 end

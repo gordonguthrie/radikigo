@@ -394,6 +394,21 @@ defmodule RadikigoTest do
 
   end
 
+  test "words that cannot be Esperanto" do
+    vortoj = ["now", "iz", "th", "wintah", "of", "our", "dizkotent"]
+    anticipoj = [
+      {"now",       [:krokodilo], []},
+      {"iz",        [:krokodilo], []},
+      {"th",        [:krokodilo], []},
+      {"wintah",    [:krokodilo], []},
+      {"of",        [:krokodilo], []},
+      {"our",       [:krokodilo], []},
+      {"dizkotent", [:krokodilo], []}
+    ]
+    assert anticipoj  == ekruli(vortoj)
+
+  end
+
 #
 # Helper functions
 #

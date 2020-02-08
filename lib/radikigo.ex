@@ -154,6 +154,7 @@ defp radikigu_vorto2(vorto, vortaro) do
     |> estas_avorto?
     |> estas_evorto?
     |> estas_verbo?
+    |> estas_krokodilo?
   catch
     p ->
       p
@@ -277,6 +278,13 @@ defp radikigu_vorto2(vorto, vortaro) do
   defp estas_v2("su" <> v),  do: throw inversu({v, [%Verbo{formo: :kondiĉa}]})
   defp estas_v2("u"  <> v),  do: throw inversu({v, [%Verbo{formo: :imperativa}]})
   defp estas_v2(inversanta), do: inversu(inversanta)
+
+  defp estas_krokodilo?({radikigo, detaletoj}) do
+    {radikigo, detaletoj}
+  end
+  defp estas_krokodilo?(radikigo) do
+    {radikigo, [:krokodilo]}
+  end
 
   defp estas_malperfekta?({radikigo, detaletoj}) do
     estas_malp2(inversu(radikigo), detaletoj)
