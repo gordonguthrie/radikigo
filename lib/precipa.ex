@@ -11,6 +11,24 @@ defmodule Precipa do
 
   """
 
+  # analyse text
+  def analazistu_teksto(teksto) when is_binary(teksto) do
+
+  paragrafoj = String.split(teksto, "\n\n")
+
+   tokenoj = for p <- paragrafoj, p != "" and p != "\"" do
+      p
+      |> punktu
+      |> lexu
+    end
+
+    tokenoj2 = List.flatten(tokenoj)
+
+    tokenoj2
+    |> amasigu_frazo
+    |> faru_signovico
+  end
+
   # divide text
   def dividu_teksto(teksto) when is_binary(teksto) do
     teksto
@@ -71,14 +89,6 @@ defmodule Precipa do
     |> anstatŭi("UH", "Ŭ")
   end
 
-  # analyse text
-  def analazistu_teksto(teksto) when is_binary(teksto) do
-    teksto
-    |> lexu
-    |> amasigu_frazo
-    |> faru_signovico
-  end
-
   # lex
   def lexu(teksto) when is_binary(teksto) do
     {:ok, tokenoj} = Lexo.lex(teksto)
@@ -96,32 +106,40 @@ defmodule Precipa do
     for {n, v} <- tokenoj, n != :ws, do: {n, v}
   end
 
+  defp punktu(paragrafo) do
+    IO.inspect(paragrafo)
+    len = String.length(paragrafo)
+    case String.slice(paragrafo, len-1..len) do
+      "." -> paragrafo
+      _   -> paragrafo <> "."
+    end
+  end
+
   # make string
   defp faru_signovico(frazo) do
     for f <- frazo do
-      String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, {v, _l}}, acc) -> v <> acc end))
-    end
+      paragrafo = String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, {v, _l}}, acc) -> v <> acc end))
+      {paragrafo, f}
+   end
   end
 
   # collect sentences (the parser)
   defp amasigu_frazo(tokenoj) do
-    amasigu_frazo2(tokenoj, false, [], [])
+    amasigu_frazo2(tokenoj, [], [])
   end
 
-  defp amasigu_frazo2([], _is_in_quotes, [], frazoj), do: Enum.reverse(frazoj)
-  defp amasigu_frazo2([], _is_in_quotes, frazo, frazoj), do: Enum.reverse([Enum.reverse(frazo) | frazoj])
-  defp amasigu_frazo2([{:quotes, q} | tail], false, frazo, frazoj) do
-    amasigu_frazo2(tail, true, [{:quotes, q} | frazo], frazoj)
+  defp amasigu_frazo2([], [], frazoj), do: Enum.reverse(frazoj)
+  defp amasigu_frazo2([], frazo, frazoj), do: Enum.reverse([Enum.reverse(frazo) | frazoj])
+  defp amasigu_frazo2([{:crlf, ""} | tail], frazo, frazoj) do
+    neufrazo = Enum.reverse(frazo)
+    amasigu_frazo2(tail, [], [neufrazo | frazoj])
   end
-  defp amasigu_frazo2([{:quotes, q} | tail], true, frazo, frazoj) do
-    amasigu_frazo2(tail, false, [{:quotes, q} | frazo], frazoj)
-  end
-  defp amasigu_frazo2([{:punkto, p} | tail], false, frazo, frazoj) do
+  defp amasigu_frazo2([{:punkto, p} | tail], frazo, frazoj) do
     neufrazo = Enum.reverse([{:punkto, p} | frazo])
-    amasigu_frazo2(tail, false, [], [neufrazo | frazoj])
+    amasigu_frazo2(tail, [], [neufrazo | frazoj])
   end
-  defp amasigu_frazo2([head | tail], is_in_quotes, frazo, frazoj) do
-    amasigu_frazo2(tail, is_in_quotes, [head | frazo], frazoj)
+  defp amasigu_frazo2([head | tail], frazo, frazoj) do
+    amasigu_frazo2(tail, [head | frazo], frazoj)
   end
 
   # replace

@@ -37,27 +37,27 @@ defmodule PrecipaTest do
     teksto = "laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj. LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ"
     frazoj = [
       "laŭ Ludoviko Zamenhof bongustas freŝa ĉeĥa manĝaĵo kun spicoj.",
-      "LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ"
+      "LAŬ LUDOVIKO ZAMENHOF BONGUSTAS FREŜA ĈEĤA MANĜAĴO KUN SPICOJ."
     ]
 
-    assert Precipa.dividu_teksto(teksto) == frazoj
+    assert run(teksto) == frazoj
 
   end
 
   test "parse quotes" do
 
     teksto = "aa bb \"cc dd. ee\" ff. gg‘s and ’ses"
-    frazoj = ["aa bb \"cc dd. ee\" ff.", "gg's and 'ses"]
+    frazoj = ["aa bb \"cc dd.", "ee\" ff.", "gg's and 'ses."]
 
-    assert Precipa.dividu_teksto(teksto) == frazoj
+    assert run(teksto) == frazoj
 
   end
 
   test "parse curly quotes" do
      teksto = "banjo “Macron-veturiloj” yoyo"
-     frazoj = ["banjo \"Macron-veturiloj\" yoyo"]
+     frazoj = ["banjo \"Macron-veturiloj\" yoyo."]
 
-     assert Precipa.dividu_teksto(teksto) == frazoj
+     assert run(teksto) == frazoj
 
   end
 
@@ -84,8 +84,28 @@ defmodule PrecipaTest do
       "La fervoja vartransporto, la fervojo ?",
       "Ekster la demando, ĉar necesas batali kontraŭ la troa personaro en la publikaj entreprenoj."
     ]
-    assert Precipa.dividu_teksto(teksto) == frazoj
+    assert run(teksto) == frazoj
 
+  end
+
+  test "break out sentences (with bad punctuation but linespaces)" do
+
+    teksto = "la medio\". de konsumado ;\n\nla riskoj de tro-varmiĝo preciziĝis."
+
+    frazoj = [
+        "la medio\".",
+        "de konsumado ;.",
+        "la riskoj de tro-varmiĝo preciziĝis."
+    ]
+    assert run(teksto) == frazoj
+
+  end
+
+  defp run(teksto) do
+    efikoj = Precipa.dividu_teksto(teksto)
+    for {f, v} <- efikoj do
+      f
+    end
   end
 
 end
