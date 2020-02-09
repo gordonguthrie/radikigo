@@ -1,6 +1,6 @@
-defmodule RadikigoTest do
+defmodule RadikigojTest do
   use ExUnit.Case
-  doctest Radikigo
+  doctest Radikigoj
 
   test "standalone roots" do
 
@@ -421,7 +421,7 @@ defmodule RadikigoTest do
   end
 
   defp ekruli(vortoj) do
-    _rezultatoj = for v <- vortoj, do: Radikigo.radikigu_vorto_TEST(v)
+    _rezultatoj = for v <- vortoj, do: Radikigoj.radikigu_vorto_TEST(v)
   end
 
 end

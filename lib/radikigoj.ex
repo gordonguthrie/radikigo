@@ -1,4 +1,4 @@
-defmodule Radikigo do
+defmodule Radikigoj do
 
   @moduledoc """
   Copied from the Go Esperanto stemmer
@@ -82,7 +82,7 @@ defmodule Radikigo do
              "dis", "eks", "mal", "mis", "pra"
            ]
 
-@falsa_affikso [
+@falsa_afikso [
                   "bon"
                 ]
 
@@ -124,11 +124,11 @@ defmodule Radikigo do
   # we pass through a pipeline and just throw on match
   def radikigu_vorto_TEST(vorto) when is_binary(vorto) do
 
-    vortaro = Vorto.akiru_malvera_affikso_vortaro()
-    radikigu_vorto(vorto, vortaro)
+    afiksa_vortaro = Vorto.akiru_malvera_afikso_vortaro()
+    radikigu_vorto(vorto, afiksa_vortaro)
   end
 
-  def radikigu_vorto(vorto, vortaro) do
+  def radikigu_vorto(vorto, afiksa_vortaro) do
     efiko = try do
       vorto
       |> estas_radikigo?
@@ -143,11 +143,11 @@ defmodule Radikigo do
     end
     case efiko do
       {:exit, {radikio, detaletoj}} -> {radikio, detaletoj, []}
-      _                             -> radikigu_vorto2(efiko, vortaro)
+      _                             -> radikigu_vorto2(efiko, afiksa_vortaro)
     end
   end
 
-defp radikigu_vorto2(vorto, vortaro) do
+defp radikigu_vorto2(vorto, afiksa_vortaro) do
   dua_paso = try do
     vorto
     |> estas_ovorto?
@@ -160,12 +160,12 @@ defp radikigu_vorto2(vorto, vortaro) do
       p
   end
 
-  tria_paso = try do
+  _tria_paso = try do
     dua_paso
       |> estas_malperfekta?
       |> estas_participo?
       |> adicu
-      |> havas_malvera_affikso?(vortaro)
+      |> havas_malvera_afikso?(afiksa_vortaro)
       |> havas_prefikso?
       |> havas_postfikso?
     catch
@@ -348,17 +348,17 @@ defp radikigu_vorto2(vorto, vortaro) do
     {radikigo, detaletoj, []}
   end
 
-  defp havas_malvera_affikso?({radikigo, detaletoj, affiksoj}, vortaro) do
-    case :dict.is_key(radikigo, vortaro) do
-      true  -> throw({radikigo, detaletoj, affiksoj})
-      false -> {radikigo, detaletoj, affiksoj}
+  defp havas_malvera_afikso?({radikigo, detaletoj, afiksoj}, afiksa_vortaro) do
+    case :dict.is_key(radikigo, afiksa_vortaro) do
+      true  -> throw({radikigo, detaletoj, afiksoj})
+      false -> {radikigo, detaletoj, afiksoj}
     end
   end
 
-  defp havas_prefikso?({radikigo, detaletoj, affiksoj}) do
-    case Enum.member?(@falsa_affikso, radikigo) do
+  defp havas_prefikso?({radikigo, detaletoj, afiksoj}) do
+    case Enum.member?(@falsa_afikso, radikigo) do
       true ->
-        {radikigo, detaletoj, affiksoj}
+        {radikigo, detaletoj, afiksoj}
       false ->
         eblaprefikso2 = String.slice(radikigo, 0..1)
         eblaprefikso3 = String.slice(radikigo, 0..2)
@@ -368,31 +368,31 @@ defp radikigu_vorto2(vorto, vortaro) do
           {true, true} ->
             case havas_verbo?(detaletoj) do
               true ->
-                forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, affiksoj)
+                forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, afiksoj)
               false ->
-                forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, affiksoj)
+                forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, afiksoj)
             end
           {true, false} ->
-            forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, affiksoj)
+            forigu_prefikso(radikigo, eblaprefikso2, 2, detaletoj, afiksoj)
           {false, true} ->
-            forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, affiksoj)
+            forigu_prefikso(radikigo, eblaprefikso3, 3, detaletoj, afiksoj)
           {false, false} ->
-            {radikigo, detaletoj, affiksoj}
+            {radikigo, detaletoj, afiksoj}
         end
     end
   end
 
-  defp havas_postfikso?({radikigo, detaletoj, affiksoj}) do
-    case Enum.member?(@falsa_affikso, radikigo) do
+  defp havas_postfikso?({radikigo, detaletoj, afiksoj}) do
+    case Enum.member?(@falsa_afikso, radikigo) do
       true ->
-        {radikigo, detaletoj, affiksoj}
+        {radikigo, detaletoj, afiksoj}
       false ->
           i = inversu(radikigo)
           eblapostfikso2 = inversu(String.slice(i, 0..1))
           case Enum.member?(@kerasnomo, eblapostfikso2) do
             true ->
               novadetaletoj = marku_karesnomi(detaletoj)
-              {radikigo <> "o", novadetaletoj, affiksoj}
+              {radikigo <> "o", novadetaletoj, afiksoj}
             false ->
               eblapostfikso3 = inversu(String.slice(i, 0..2))
               eblapostfikso4 = inversu(String.slice(i, 0..3))
@@ -401,13 +401,13 @@ defp radikigu_vorto2(vorto, vortaro) do
               estas_postfikso4 = Enum.member?(@postfikso4, eblapostfikso4)
               case {estas_postfikso2, estas_postfikso3, estas_postfikso4} do
                 {true, false, false} ->
-                  forigu_postfikso(radikigo, 2, detaletoj, affiksoj)
+                  forigu_postfikso(radikigo, 2, detaletoj, afiksoj)
                 {false, true, false} ->
-                  forigu_postfikso(radikigo, 3, detaletoj, affiksoj)
+                  forigu_postfikso(radikigo, 3, detaletoj, afiksoj)
                 {false, false, true} ->
-                  forigu_postfikso(radikigo, 4, detaletoj, affiksoj)
+                  forigu_postfikso(radikigo, 4, detaletoj, afiksoj)
                 {false, false, false} ->
-                  {radikigo, detaletoj, affiksoj}
+                  {radikigo, detaletoj, afiksoj}
               end
             end
         end
@@ -433,12 +433,12 @@ defp radikigu_vorto2(vorto, vortaro) do
     String.reverse(vorto)
   end
 
-  defp forigu_prefikso(radikigo, prefikso, nomero, detaletoj, affiksoj) do
+  defp forigu_prefikso(radikigo, prefikso, nomero, detaletoj, afiksoj) do
     len = String.length(radikigo) - 1
     novaradikigo = String.slice(radikigo, nomero..len)
-    nombraaffiksoj = length(affiksoj)
-    novaaffiksoj = [%Affixo{prefikso: prefikso, nombro: nombraaffiksoj + 1} | affiksoj]
-    havas_prefikso?{novaradikigo, detaletoj, novaaffiksoj}
+    nombraafiksoj = length(afiksoj)
+    novaafiksoj = [%Affixo{prefikso: prefikso, nombro: nombraafiksoj + 1} | afiksoj]
+    havas_prefikso?{novaradikigo, detaletoj, novaafiksoj}
   end
 
   defp marku_karesnomi(detaletoj), do: marku_k2(detaletoj, [])
@@ -447,16 +447,16 @@ defp radikigu_vorto2(vorto, vortaro) do
   defp marku_k2([%Ovorto{} = o | v], a), do: Enum.reverse(a) ++ [%Ovorto{o | estas_karesnomo: :jes}] ++ v
   defp marku_k2([k | v], a),             do: marku_k2(v, [k | a])
 
-  defp forigu_postfikso(radikigo, nomero, detaletoj, affiksoj) do
+  defp forigu_postfikso(radikigo, nomero, detaletoj, afiksoj) do
     len = String.length(radikigo) - 1
     postfikso = String.slice(radikigo, (len - nomero + 1)..len)
     if (len - nomero > 0) do
       novaradikigo = String.slice(radikigo, 0..(len - nomero))
-      nombraaffiksoj = length(affiksoj)
-      novaaffiksoj = [%Affixo{postfikso: postfikso, nombro: nombraaffiksoj + 1} | affiksoj]
-      havas_postfikso?({novaradikigo, detaletoj, novaaffiksoj})
+      nombraafiksoj = length(afiksoj)
+      novaafiksoj = [%Affixo{postfikso: postfikso, nombro: nombraafiksoj + 1} | afiksoj]
+      havas_postfikso?({novaradikigo, detaletoj, novaafiksoj})
     else
-      {radikigo, detaletoj, affiksoj}
+      {radikigo, detaletoj, afiksoj}
     end
   end
 

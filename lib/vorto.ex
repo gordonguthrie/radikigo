@@ -1,6 +1,6 @@
 defmodule Vorto do
 
-  def akiru__vortaro() do
+  def akiru_vortaro() do
     radikigoj = [
       {"abat", [{"abat", "abbot", :root}]},
       {"abdik", [{"abdik", "abdicate, resign", :root}]},
@@ -5042,7 +5042,7 @@ defmodule Vorto do
 
   end
 
-  def akiru_malvera_affikso_vortaro() do
+  def akiru_malvera_afikso_vortaro() do
     radikigoj = [
       {"abism", []},
       {"abon", []},

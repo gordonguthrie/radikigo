@@ -4914,8 +4914,8 @@ end
   IO.inspect(n, label: "the number of affixes to be investigated")
 end
 
-  defp print({{radikigo, detaletoj, affiksoj}, vorto, description}, n) do
-    case affiksoj do
+  defp print({{radikigo, detaletoj, afiksoj}, vorto, description}, n) do
+    case afiksoj do
       [] ->
         n
       _  ->
@@ -4927,7 +4927,7 @@ end
         IO.inspect(radikigo,    label: "root")
 #        IO.inspect(description, label: "description")
 #        IO.inspect(detaletoj,   label: "details")
-#        IO.inspect(affiksoj,    label: "affixes")
+#        IO.inspect(afiksoj,    label: "affixes")
         n + 1
     end
 end

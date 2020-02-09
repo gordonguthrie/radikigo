@@ -13,8 +13,8 @@ defmodule ProcezoTest do
   Post la milito, la uzo de la franca kiel skriblingvo kaj tiu de la luksemburga kiel parollingvo iĝas marko de identeco. Kvankam restanta la unua lingvo instruata en lernejado, la germana malprogresas en la publika sfero. La uzo de la lingvo de Moliero plivastiĝas pro ĝia uzo fare de la multaj enmigrintoj venintaj de latinidaj landoj. En situacio de rapida kresko de la nombro de fremduloj kaj mobilizado de naciistaj movadoj pri lingvaj demandoj, ekzemple la asocio Actioun Lëtzebuergesh, la leĝo de la 24-a de februaro 1984 efektivigas la luksemburgan, kiel \"nacian lingvon\" kaj devigas la administracion respondi en la tri lingvoj uzataj, laŭ la elekto de la demandinto. En oktobro 2008, nova leĝo postulas sukceson en ekzameno pri scipovo de la luksemburga por akiri la Luksemburgian civitanecon. La antaŭeniĝo de ĉi lasta ankaŭ plifortiĝas pro la leĝo de la 20-a de julio 2018."
 
     efikoj = "banjo"
-
-    Procezo.procezu(teksto)
+    IO.inspect(Procezo.procezu(teksto, "my book", "http://example.com", "Gordon Guthrie"), label: "returns")
+    #Procezo.procezu(teksto, "my book", "http://example.com", "Gordon Guthrie")
 
     #assert Procezo.procezu(teksto) == efikoj
     assert true == false

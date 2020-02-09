@@ -7,7 +7,7 @@ defmodule Precipa do
   """
 
   @doc """
-  radikigo
+  Radikigo
 
   """
 
@@ -107,11 +107,10 @@ defmodule Precipa do
   end
 
   defp punktu(paragrafo) do
-    IO.inspect(paragrafo)
     len = String.length(paragrafo)
     case String.slice(paragrafo, len-1..len) do
-      "." -> paragrafo
-      _   -> paragrafo <> "."
+      "." -> String.trim(paragrafo)
+      _   -> String.trim(paragrafo) <> "."
     end
   end
 
