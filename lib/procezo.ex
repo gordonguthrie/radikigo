@@ -31,7 +31,7 @@ defmodule Procezo do
 
   defp procezu_vorto({:vorto, {vorto, longaĵo}}, {ekesto, vortaro, afiksa_vortaro, vortoj}) do
     {radikigo, detaletoj, afiksoj} = Radikigoj.radikigu_vorto(String.downcase(vorto), afiksa_vortaro)
-    estas_vortarero? = case :dict.is_key(vorto, vortaro) do
+    estas_vortarero? = case :dict.is_key(radikigo, vortaro) do
       true  -> :jes
       false -> :ne
     end
