@@ -3,15 +3,38 @@ defmodule Precipa do
   use LexLuthor
 
   @moduledoc """
-  Documentation for Radikigo.
+  Documentation for the `Radikigo` module `Precipa`.
+
+  This is the main module and provides
+  the API interface for the system that uses Radikigo
+
+  It uses the LexLuthor package for lexing
   """
 
   @doc """
-  Radikigo
+  `Precipa.dividu_teksto` breaks the text up into parapgraphs.
+
+  It normalises the text by:
+
+  * transforming the writing to standard Experanto (eg cx to ĉ etc)
+  * lexing the string into tokens (words, puncturation)
+  * normalising white space (one space beween words, trim at start and end)
+  * normalising quotation (German and French style quotation marks are rendered English style)
 
   """
+  def dividu_teksto(teksto) when is_binary(teksto) do
+    teksto
+    |> preparu_alfabeto
+    |> analazistu_teksto
+  end
 
-  # analyse text
+  @doc """
+  `Precipa.analazistu_teksto` analyzes text
+  
+  It makes a first cut at paragraphs (based on double line ends)
+  and then fixes up some punctuation and trimming issues and then
+  calls the lexer which turns the paragraphs into strings of tokens
+  """
   def analazistu_teksto(teksto) when is_binary(teksto) do
 
   paragrafoj = String.split(teksto, "\n\n")
@@ -29,14 +52,11 @@ defmodule Precipa do
     |> faru_signovico
   end
 
-  # divide text
-  def dividu_teksto(teksto) when is_binary(teksto) do
-    teksto
-    |> preparu_alfabeto
-    |> analazistu_teksto
-  end
-
-  # prepare the alphabet
+  @doc """
+  `Precipa.preparu_alfabeto` prepares the alphabet
+  ie switch to proper esperanto from
+  escaped characters
+  """
   def preparu_alfabeto(teksto) when is_binary(teksto) do
     teksto
     |> anstatŭi("cx", "ĉ")
@@ -89,23 +109,31 @@ defmodule Precipa do
     |> anstatŭi("UH", "Ŭ")
   end
 
-  # lex
+  @doc """
+  `Precipa.lexu` lexes the text in a paragraph into tokens
+  and then collects them up
+  """
   def lexu(teksto) when is_binary(teksto) do
     {:ok, tokenoj} = Lexo.lex(teksto)
     tokenoj
     |> amasigu_tokenoj
   end
 
-  # collect tokens
+  @doc """
+  `Precipa.amasigu_tokenoj` collects up the tokens
+  """
   def amasigu_tokenoj(tokenoj) do
     for %LexLuthor.Token{name: n, value: v} <- tokenoj, do: {n, v}
   end
 
-  # filter whitespace
+  @doc """
+  `Precipa.filtru_interspaco` filters whitespace out
+  """
   def filtru_interspaco(tokenoj) do
     for {n, v} <- tokenoj, n != :ws, do: {n, v}
   end
 
+  # Precipa.punktu tidies up punctuation
   defp punktu(paragrafo) do
     len = String.length(paragrafo)
     case String.slice(paragrafo, len-1..len) do
@@ -114,7 +142,8 @@ defmodule Precipa do
     end
   end
 
-  # make string
+  # Precipa.faru_signovico makes strings from phrases which
+  # are lists of tokens
   defp faru_signovico(frazo) do
     for f <- frazo do
       paragrafo = String.trim(Enum.reduce(Enum.reverse(f), "", fn({_n, {v, _l}}, acc) -> v <> acc end))
@@ -122,7 +151,8 @@ defmodule Precipa do
    end
   end
 
-  # collect sentences (the parser)
+  # Precipa.amasigu_frazo collects sentences from phrases.
+  # It is the parser - it tries to respect quotation marks
   defp amasigu_frazo(tokenoj) do
     amasigu_frazo2(tokenoj, [], [])
   end

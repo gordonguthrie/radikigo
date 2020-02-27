@@ -308,23 +308,24 @@ defmodule RadikigojTest do
 
   end
 
+  # use the fake work root 'nem' because there are no word clashes
   test "single postfixes" do
     # nouns first
     vortoj1 = [
-      "amaĉo", "amaĵo", "amano", "amaro",
-      "ameco", "amego", "amejo",
-      "amemo", "amero", "ameto", "amido", "amigo",
-      "amiĵo", "amilo", "amino", "amono",
-      "amopo", "amujo", "amulo", "amumo",
-      "ameblo", "amendo", "amfojo", "amindo", "amingo", "amismo", "amisto", "amoblo",
-      "amestro"
+      "nemaĉo", "nemaĵo", "nemano", "nemaro",
+      "nemeco", "nemego", "nemejo",
+      "nememo", "nemero", "nemeto", "nemido", "nemigo",
+      "nemiĵo", "nemilo", "nemino", "nemono",
+      "nemopo", "nemujo", "nemulo", "nemumo",
+      "nemeblo", "nemendo", "nemfojo", "nemindo", "nemingo", "nemismo", "nemisto", "nemoblo",
+      "nemestro"
     ]
     # other stuff including various verb structures
     vortoj2 = [
-      # "amaĉe",
-      # "amaĉa",
-      "amaĉas",
-      "amaĉanto"
+      "nemaĉe",
+      "nemaĉa",
+      "nemaĉas",
+      "nemaĉanto"
     ]
     # nicknames
     vortoj3 = [
@@ -333,42 +334,42 @@ defmodule RadikigojTest do
     ]
 
     anticipoj1 = [
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "aĉ",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "aĵ",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "an",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ar",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ec",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "eg",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ej",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "em",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "er",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "et",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "id",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ig",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "iĵ",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "il",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "in",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "on",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "op",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "uj",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ul",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "um",   nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ebl",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "end",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "foj",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ind",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ing",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ism",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "ist",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "obl",  nombro: 1}]},
-      {"am", [%Ovorto{}], [%Affixo{postfikso: "estr", nombro: 1}]}
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "aĉ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "aĵ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "an",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ar",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ec",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "eg",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ej",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "em",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "er",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "et",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "id",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ig",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "iĵ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "il",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "in",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "on",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "op",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "uj",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ul",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "um",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ebl",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "end",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "foj",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ind",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ing",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ism",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ist",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "obl",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Affixo{postfikso: "estr", nombro: 1}]}
     ]
 
     anticipoj2 = [
-      #{"am", [%Evorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
-      #{"am", [%Avorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
-      {"am", [%Verbo{formo: :nuna}], [%Affixo{postfikso: "aĉ", nombro: 1}]},
-      {"am", [
+      {"nem", [%Evorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [%Avorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [%Verbo{formo: :nuna}], [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [
               %Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :ekestiĝa},
               %Ovorto{estas_karesnomo: :ne, kazo: :malmarkita, nombro: :sola}
              ],                      [%Affixo{postfikso: "aĉ", nombro: 1}]},

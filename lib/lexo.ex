@@ -1,6 +1,13 @@
 defmodule Lexo do
   use LexLuthor
 
+  @moduledoc """
+  Documentation for the Radikigo module Lexo
+
+  This is the lexer - it breaks texts into words, important punctuation
+  (eg quotes, full stops), white space and other.
+  """
+
   @alphabeto ~r/^[abcĉdefgĝhĥijĵklmnoprsŝtuŭvzABCĈDEFGĜHĤIJĴKLMNOPRSŜTUŬVZ]+/u
 
   defrule @alphabeto,         fn(v)  -> {:vorto,  {v,    String.length(v)}} end

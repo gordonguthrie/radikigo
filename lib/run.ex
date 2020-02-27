@@ -1,7 +1,7 @@
 defmodule Run do
 
   def run() do
-    sentences = Procezo.procezu(
+    _sentences = Procezo.procezu(
     "Ekde la mezepoko, Luksemburgio - kiu tiam okcidente enhavas franclingvan regionon, kie estas parolataj la valonaj dialektoj, kaj oriente germanlingvan regionon, kie estas parolataj la mozelfrankaj dialektoj - elektas la francan, kiel administracian lingvon. Kiam ĝi okupas ĝian teritorion, en la 17-a jarcento kaj dum la revolucio, en 1795 - kreante la portempan distrikton de Arbaroj - Francio trudas sian lingvon en la publika vivo. Post la malvenko de Napoleono en Vaterlo, la kongreso de Vieno decidas la kreon de la Granda Duklando, ligita per persona unio al la reĝo de Nederlando, sed aliĝanta al la Germana konfederacio, tiama malstrikta unio de germanlingvaj reĝlandoj, princlandoj kaj suverenaj ŝtatoj.
 
 Sekve de la Belga revolucio, la traktato de Londono (1839) limigas la Grandan Duklandon, de tiam sendependan, al la germanlingvaj regionoj. La okcidenta parto, ĉefe franclingva, iĝas la samnoma Belga provinco de Luksemburgio. Dum la Granda Duklando aliĝas al la Germana dogana unio (Zollverein) la elitoj trudas la konservon de la franca, kiel lingvo administracia, justica kaj politika. En 1843 ĝi estas enmetita en la instruado ekde la primara, tuj post la germana. Ĉiutaga lingvo kaj formo de la mozelfranka, la luksemburga estos nur enmetita en 1912, po unu horo de konversacio semajne.
