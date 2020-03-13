@@ -201,9 +201,9 @@ defp radikigu_vorto2(vorto, afiksa_vortaro) do
                   "an"  ->
                     throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, kazo: :markita}]})
                   "aj"  ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, nombro: :jes}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, nombro: :plura}]})
                   "ajn" ->
-                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}]})
+                    throw({kurtigu(p, lenp), [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :plura}]})
                   _ -> :ok
                 end
               false ->

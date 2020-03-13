@@ -57,16 +57,16 @@ defmodule RadikigojTest do
       "iliajn",
     ]
     anticipoj = [
-      {"mi",  [%Pronomo{}],                                                 []},
-      {"mi",  [%Pronomo{estas_poseda: :jes}],                               []},
-      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita}],               []},
-      {"mi",  [%Pronomo{estas_poseda: :jes, nombro: :jes}],                 []},
-      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}], []},
-      {"ili", [%Pronomo{}],                                                 []},
-      {"ili", [%Pronomo{estas_poseda: :jes}],                               []},
-      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita}],               []},
-      {"ili", [%Pronomo{estas_poseda: :jes, nombro: :jes}],                 []},
-      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :jes}], []}
+      {"mi",  [%Pronomo{}],                                                   []},
+      {"mi",  [%Pronomo{estas_poseda: :jes}],                                 []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita}],                 []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, nombro: :plura}],                 []},
+      {"mi",  [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :plura}], []},
+      {"ili", [%Pronomo{}],                                                   []},
+      {"ili", [%Pronomo{estas_poseda: :jes}],                                 []},
+      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita}],                 []},
+      {"ili", [%Pronomo{estas_poseda: :jes, nombro: :plura}],                 []},
+      {"ili", [%Pronomo{estas_poseda: :jes, kazo: :markita, nombro: :plura}], []}
     ]
     assert anticipoj == ekruli(vortoj)
 
