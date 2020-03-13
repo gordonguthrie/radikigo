@@ -1,6 +1,6 @@
 defmodule Verbo do
   # formo: [:infinitiva | :nuna | :futuro | :estinta | :kondiĉa | :imperativa | :participa | :radikigo]
-  # voĉo: [activa | pasiva]
+  # voĉo: [aktiva | pasiva]
   # aspecto: [:nil | :ekestiĝa | :finita | :anticipa]
   # estas_partipo: [:jes | :ne]
   # estas_perfekto: [:jes | :ne]
