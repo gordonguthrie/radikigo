@@ -437,7 +437,7 @@ defp radikigu_vorto2(vorto, afiksa_vortaro) do
     len = String.length(radikigo) - 1
     novaradikigo = String.slice(radikigo, nomero..len)
     nombraafiksoj = length(afiksoj)
-    novaafiksoj = [%Affixo{prefikso: prefikso, nombro: nombraafiksoj + 1} | afiksoj]
+    novaafiksoj = [%Afikso{prefikso: prefikso, nombro: nombraafiksoj + 1} | afiksoj]
     havas_prefikso?{novaradikigo, detaletoj, novaafiksoj}
   end
 
@@ -453,7 +453,7 @@ defp radikigu_vorto2(vorto, afiksa_vortaro) do
     if (len - nomero > 0) do
       novaradikigo = String.slice(radikigo, 0..(len - nomero))
       nombraafiksoj = length(afiksoj)
-      novaafiksoj = [%Affixo{postfikso: postfikso, nombro: nombraafiksoj + 1} | afiksoj]
+      novaafiksoj = [%Afikso{postfikso: postfikso, nombro: nombraafiksoj + 1} | afiksoj]
       havas_postfikso?({novaradikigo, detaletoj, novaafiksoj})
     else
       {radikigo, detaletoj, afiksoj}

@@ -264,17 +264,17 @@ defmodule RadikigojTest do
         "disamo", "eksamo", "eksami", "malamo", "misamo", "praamo"
         ]
     anticipoj = [
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "bo",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "ek",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "fi",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "ge",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "re",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "dis", nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "eks", nombro: 1}]},
-      {"sam", [%Verbo{}],  [%Affixo{prefikso: "ek",  nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "mal", nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "mis", nombro: 1}]},
-      {"am",  [%Ovorto{}], [%Affixo{prefikso: "pra", nombro: 1}]}
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "bo",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "ek",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "fi",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "ge",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "re",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "dis", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "eks", nombro: 1}]},
+      {"sam", [%Verbo{}],  [%Afikso{prefikso: "ek",  nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "mal", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "mis", nombro: 1}]},
+      {"am",  [%Ovorto{}], [%Afikso{prefikso: "pra", nombro: 1}]}
     ]
     assert anticipoj == ekruli(vortoj)
 
@@ -287,21 +287,21 @@ defmodule RadikigojTest do
         ]
     anticipoj = [
       {"am",  [%Ovorto{}], [
-        %Affixo{prefikso: "ge", nombro: 2},
-        %Affixo{prefikso: "bo", nombro: 1}
+        %Afikso{prefikso: "ge", nombro: 2},
+        %Afikso{prefikso: "bo", nombro: 1}
         ]},
       {"bon", [%Ovorto{}], [
-        %Affixo{prefikso: "ge", nombro: 1}
+        %Afikso{prefikso: "ge", nombro: 1}
         ]},
       {"am",  [%Ovorto{}], [
-        %Affixo{prefikso: "eks", nombro: 2},
-        %Affixo{prefikso: "mal", nombro: 1}
+        %Afikso{prefikso: "eks", nombro: 2},
+        %Afikso{prefikso: "mal", nombro: 1}
         ]},
       {"am",  [%Ovorto{}], [
-        %Affixo{prefikso: "pra", nombro: 4},
-        %Affixo{prefikso: "dis", nombro: 3},
-        %Affixo{prefikso: "re",  nombro: 2},
-        %Affixo{prefikso: "ge",  nombro: 1}
+        %Afikso{prefikso: "pra", nombro: 4},
+        %Afikso{prefikso: "dis", nombro: 3},
+        %Afikso{prefikso: "re",  nombro: 2},
+        %Afikso{prefikso: "ge",  nombro: 1}
         ]},
     ]
     assert anticipoj == ekruli(vortoj)
@@ -334,45 +334,45 @@ defmodule RadikigojTest do
     ]
 
     anticipoj1 = [
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "aĉ",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "aĵ",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "an",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ar",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ec",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "eg",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ej",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "em",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "er",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "et",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "id",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ig",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "iĵ",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "il",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "in",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "on",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "op",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "uj",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ul",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "um",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ebl",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "end",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "foj",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ind",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ing",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ism",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "ist",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "obl",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Affixo{postfikso: "estr", nombro: 1}]}
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "aĉ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "aĵ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "an",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ar",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ec",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "eg",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ej",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "em",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "er",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "et",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "id",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ig",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "iĵ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "il",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "in",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "on",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "op",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "uj",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ul",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "um",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ebl",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "end",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "foj",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ind",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ing",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ism",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ist",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "obl",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "estr", nombro: 1}]}
     ]
 
     anticipoj2 = [
-      {"nem", [%Evorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
-      {"nem", [%Avorto{}],            [%Affixo{postfikso: "aĉ", nombro: 1}]},
-      {"nem", [%Verbo{formo: :nuna}], [%Affixo{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [%Evorto{}],            [%Afikso{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [%Avorto{}],            [%Afikso{postfikso: "aĉ", nombro: 1}]},
+      {"nem", [%Verbo{formo: :nuna}], [%Afikso{postfikso: "aĉ", nombro: 1}]},
       {"nem", [
               %Verbo{formo: :radikigo, estas_partipo: :jes, aspecto: :ekestiĝa},
               %Ovorto{estas_karesnomo: :ne, kazo: :malmarkita, nombro: :sola}
-             ],                      [%Affixo{postfikso: "aĉ", nombro: 1}]},
+             ],                      [%Afikso{postfikso: "aĉ", nombro: 1}]},
     ]
     anticipoj3 = [
       {"gordonjo", [%Ovorto{estas_karesnomo: :jes}], []},

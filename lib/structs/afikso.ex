@@ -1,4 +1,4 @@
-defmodule Affixo do
+defmodule Afikso do
   # prefixo  = [nil | prefix()]
   # postfixo = [nil | postfix()]
   # numbro = int()
