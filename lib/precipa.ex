@@ -30,7 +30,7 @@ defmodule Precipa do
 
   @doc """
   `Precipa.analazistu_teksto` analyzes text
-  
+
   It makes a first cut at paragraphs (based on double line ends)
   and then fixes up some punctuation and trimming issues and then
   calls the lexer which turns the paragraphs into strings of tokens
@@ -38,6 +38,7 @@ defmodule Precipa do
   def analazistu_teksto(teksto) when is_binary(teksto) do
 
   paragrafoj = String.split(teksto, "\n\n")
+  IO.inspect(paragrafoj, label: "paragrafoj")
 
    tokenoj = for p <- paragrafoj, p != "" and p != "\"" do
       p
@@ -49,6 +50,7 @@ defmodule Precipa do
 
     tokenoj2
     |> amasigu_frazo
+    |> IO.inspect(label: "after amasigu frazo")
     |> faru_signovico
   end
 
@@ -133,6 +135,9 @@ defmodule Precipa do
     for {n, v} <- tokenoj, n != :ws, do: {n, v}
   end
 
+  defp stucu([{:ws, _} | t]), do: t
+  defp stucu(tokenoj),        do: tokenoj
+
   # Precipa.punktu tidies up punctuation
   defp punktu(paragrafo) do
     len = String.length(paragrafo)
@@ -157,14 +162,15 @@ defmodule Precipa do
     amasigu_frazo2(tokenoj, [], [])
   end
 
+  # gotta trim the tokens because you trim the string
   defp amasigu_frazo2([], [], frazoj), do: Enum.reverse(frazoj)
-  defp amasigu_frazo2([], frazo, frazoj), do: Enum.reverse([Enum.reverse(frazo) | frazoj])
+  defp amasigu_frazo2([], frazo, frazoj), do: stucu(Enum.reverse([Enum.reverse(frazo) | frazoj]))
   defp amasigu_frazo2([{:crlf, ""} | tail], frazo, frazoj) do
     neufrazo = Enum.reverse(frazo)
     amasigu_frazo2(tail, [], [neufrazo | frazoj])
   end
   defp amasigu_frazo2([{:punkto, p} | tail], frazo, frazoj) do
-    neufrazo = Enum.reverse([{:punkto, p} | frazo])
+    neufrazo = stucu(Enum.reverse([{:punkto, p} | frazo]))
     amasigu_frazo2(tail, [], [neufrazo | frazoj])
   end
   defp amasigu_frazo2([head | tail], frazo, frazoj) do

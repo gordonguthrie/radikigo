@@ -14,7 +14,7 @@ defmodule Lexo do
   defrule ~r/^['’‘]/u,        fn(_q) -> {:quote,  {"'",  1}}                end
   defrule ~r/^[\"“”»«„]/u,    fn(_q) -> {:quotes, {"\"", 1}}                end
   defrule ~r/^[\.\?]/u,       fn(p)  -> {:punkto, {p,    1}}                end
-  defrule ~r/^[[:space:]]+/u, fn(w)  -> {:ws,     {" ",  String.length(w)}} end
+  defrule ~r/^[[:space:]]+/u, fn(_w) -> {:ws,     {" ",  1}}                end
   defrule ~r/^./u,            fn(a)  -> {:any,    {a,    1}}                end
 
 end
