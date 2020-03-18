@@ -38,7 +38,6 @@ defmodule Precipa do
   def analazistu_teksto(teksto) when is_binary(teksto) do
 
   paragrafoj = String.split(teksto, "\n\n")
-  IO.inspect(paragrafoj, label: "paragrafoj")
 
    tokenoj = for p <- paragrafoj, p != "" and p != "\"" do
       p
@@ -50,7 +49,6 @@ defmodule Precipa do
 
     tokenoj2
     |> amasigu_frazo
-    |> IO.inspect(label: "after amasigu frazo")
     |> faru_signovico
   end
 

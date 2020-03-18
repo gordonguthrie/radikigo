@@ -88,18 +88,18 @@ defmodule Radikigoj do
 
 # note that "ad" is treated seperately as a postfix
 @postfikso2 [
-    "aĉ", "aĵ", "an", "ar",
-    "ec", "eg", "em", "er", "et",
-    "ej", "id", "ig", "iĵ", "il",
-    "in", "on", "op", "uj", "ul",
-    "um"
+    "aĉ", "ad", "aĵ", "an", "ar",
+    "ec", "eg", "em", "er", "et", "ej",
+    "id", "ig", "iĝ", "ik", "il", "iv",
+    "in", "on", "op", "oz",
+    "uj", "ul", "um"
   ]
 
 @postfikso3 [
-    "ebl", "end", "foj", "ind", "ing", "ism", "ist", "obl"
+    "ebl", "end", "esk", "foj", "ind", "ing", "ism", "ist", "obl"
   ]
 
-@postfikso4 ["estr"]
+@postfikso4 ["estr", "olog"]
 
 @kerasnomo ["ĉj", "nj"]
 
