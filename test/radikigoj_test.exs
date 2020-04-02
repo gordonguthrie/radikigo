@@ -313,12 +313,16 @@ defmodule RadikigojTest do
     # nouns first
     vortoj1 = [
       "nemaĉo", "nemaĵo", "nemano", "nemaro",
-      "nemeco", "nemego", "nemejo",
-      "nememo", "nemero", "nemeto", "nemido", "nemigo",
-      "nemiĵo", "nemilo", "nemino", "nemono",
-      "nemopo", "nemujo", "nemulo", "nemumo",
-      "nemeblo", "nemendo", "nemfojo", "nemindo", "nemingo", "nemismo", "nemisto", "nemoblo",
-      "nemestro"
+      "nemeco", "nemego", "nemejo", "nememo", "nemero", "nemeto",
+      "nemido", "nemigo", "nemiĝo", "nemiko", "nemilo", "nemino",
+      "nemono", "nemopo", "nemozo",
+      "nemujo", "nemulo", "nemumo",
+      "nemeblo", "nemendo", "nemesko",
+      "nemfojo",
+      "nemindo", "nemingo", "nemismo", "nemisto",
+      "nemoblo",
+      "nemestro",
+      "nemologo"
     ]
     # other stuff including various verb structures
     vortoj2 = [
@@ -346,23 +350,27 @@ defmodule RadikigojTest do
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "et",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "id",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ig",   nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Afikso{postfikso: "iĵ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "iĝ",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "ik",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "il",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "in",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "on",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "op",   nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "oz",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "uj",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ul",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "um",   nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ebl",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "end",  nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "esk",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "foj",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ind",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ing",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ism",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "ist",  nombro: 1}]},
       {"nem", [%Ovorto{}], [%Afikso{postfikso: "obl",  nombro: 1}]},
-      {"nem", [%Ovorto{}], [%Afikso{postfikso: "estr", nombro: 1}]}
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "estr", nombro: 1}]},
+      {"nem", [%Ovorto{}], [%Afikso{postfikso: "olog", nombro: 1}]}
     ]
 
     anticipoj2 = [
@@ -380,6 +388,57 @@ defmodule RadikigojTest do
     ]
     assert anticipoj1 ++ anticipoj2 ++ anticipoj3  == ekruli(vortoj1 ++ vortoj2 ++ vortoj3)
   end
+
+  test "poly postfixes" do
+
+    vortoj = [
+      "nemaĉo", "nemaĉaĵo", "nemanaĉaĵo", "nemaranaĉaĵo",
+        ]
+    anticipoj = [
+      {"nem",  [%Ovorto{}], [
+        %Afikso{postfikso: "aĉ", nombro: 1}
+        ]},
+      {"nem", [%Ovorto{}], [
+        %Afikso{postfikso: "aĉ", nombro: 2},
+        %Afikso{postfikso: "aĵ", nombro: 1}
+        ]},
+      {"nem",  [%Ovorto{}], [
+        %Afikso{postfikso: "an", nombro: 3},
+        %Afikso{postfikso: "aĉ", nombro: 2},
+        %Afikso{postfikso: "aĵ", nombro: 1}
+        ]},
+      {"nem",  [%Ovorto{}], [
+        %Afikso{postfikso: "ar", nombro: 4},
+        %Afikso{postfikso: "an", nombro: 3},
+        %Afikso{postfikso: "aĉ",  nombro: 2},
+        %Afikso{postfikso: "aĵ",  nombro: 1}
+        ]},
+    ]
+    assert anticipoj == ekruli(vortoj)
+
+  end
+
+  test "poly affixes" do
+
+    vortoj = [
+      "genemaĉo", "gebonemaĉaĵo",
+        ]
+    anticipoj = [
+      {"nem",  [%Ovorto{}], [
+        %Afikso{postfikso: "aĉ", nombro: 2},
+        %Afikso{prefikso:  "ge", nombro: 1}
+        ]},
+      {"nem", [%Ovorto{}], [
+        %Afikso{postfikso: "aĉ", nombro: 4},
+        %Afikso{postfikso: "aĵ", nombro: 3},
+        %Afikso{prefikso:  "bo", nombro: 2},
+        %Afikso{prefikso:  "ge", nombro: 1}
+        ]}
+    ]
+    assert anticipoj == ekruli(vortoj)
+
+  end
+
 
   test "false affixes" do
     # words with false affixes
