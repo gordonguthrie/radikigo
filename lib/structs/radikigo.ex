@@ -5,7 +5,6 @@ defmodule Radikigo do
   # afiksoj: [affixo()]
   # ekesto: int()
   # longaĵo: int()
-  # estas_vortarero?: [jes | ne]
   defstruct(vorto: "", radikigo: "", detaletoj: [], afiksoj: [],
-            ekesto: 0, longaĵo: 0, estas_vortarero?: :ne)
+            ekesto: 0, longaĵo: 0)
 end

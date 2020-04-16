@@ -84,7 +84,7 @@ defmodule Procezo do
   def procezu_vorto({:vorto, {vorto, longaĵo}}, {ekesto, afiksa_vortaro, vortoj}) do
     {radikigo, detaletoj, afiksoj} = Radikigoj.radikigu_vorto(String.downcase(vorto), afiksa_vortaro)
     r = %Radikigo{vorto: vorto, radikigo: radikigo, detaletoj: detaletoj, afiksoj: afiksoj,
-                  ekesto: ekesto, longaĵo: longaĵo, estas_vortarero?: :ne}
+                  ekesto: ekesto, longaĵo: longaĵo}
     {ekesto + longaĵo, afiksa_vortaro, [r | vortoj]}
   end
   def procezu_vorto({_, {_, len}}, {n, afiksa_vortaro, vortoj}) do
